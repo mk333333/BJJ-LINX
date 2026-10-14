@@ -6,7 +6,7 @@
 <title>BJJ Linx — Guía y progreso de Brazilian Jiu-Jitsu</title>
 <meta name="description" content="Guía completa de Brazilian Jiu-Jitsu: técnicas, cinturones, reglas y seguimiento de tu progreso personal, en 9 idiomas: español, inglés, valenciano, portugués, italiano, alemán, francés, turco y árabe.">
 <meta name="theme-color" content="#68cff4">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Q8EWLEi97uoPjCA58rz5PMY7Gf0BVzlegroLqsf2Acg=' 'sha256-2VtAMw10j6gJ9yLVJnwqbh23Q+N866C3uNd0+0DYZ9M=' 'sha256-pZhvZKLYEgTLWurRzRfj8F0DqKhYURdQ40ckH/pFTPo='; worker-src 'self'; manifest-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Q8EWLEi97uoPjCA58rz5PMY7Gf0BVzlegroLqsf2Acg=' 'sha256-2VtAMw10j6gJ9yLVJnwqbh23Q+N866C3uNd0+0DYZ9M=' 'sha256-MFHbi9Hs9LeqcGrXnrBL3bJp/M08llIziECWJwEbEyI='; worker-src 'self'; manifest-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none';">
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), usb=(), payment=(), midi=(), magnetometer=(), gyroscope=(), accelerometer=(), fullscreen=(self)">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
@@ -1009,6 +1009,54 @@ img.flag{width:18px;height:12px;object-fit:cover;border-radius:2px;vertical-alig
 @media (min-width:1025px){
  .home-grid{grid-template-columns:1fr 1fr;align-items:start;}
  .hw-dot{max-width:44px;}
+}
+
+/* ===== Diseño v2: Técnicas, ficha y botones ===== */
+:root{--lv-p:#4f9a62;--lv-i:#d39a2c;--lv-a:#c0503f;--sheet-bg:#eef9fd;--sheet-ink:#0d2126;}
+/* Técnicas: contador en una línea, sin texto de ayuda; la tarjeta indica con una flecha que se abre */
+#tecnicas .tech-hint{display:none;}
+#tecnicas .tech-counter{padding:2px 2px 0;margin:2px 0 10px;background:transparent;border:0;box-shadow:none;border-radius:0;justify-content:flex-start;gap:8px;}
+#tecnicas .tech-counter .tc-num{font-size:22px;}
+#tecnicas .tech-counter .tc-label{font-size:13.5px;font-weight:600;text-transform:none;letter-spacing:0;opacity:.8;}
+.level-legend{padding:6px 12px;margin:0 0 10px;box-shadow:none;}
+.tf-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.tf-btn{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 14px;border-radius:20px;border:1px solid var(--line);background:transparent;color:var(--obg-text,var(--canvas));font-family:'Barlow',sans-serif;font-weight:700;font-size:14px;cursor:pointer;}
+.tf-btn.has,.tf-btn[aria-expanded="true"]{background:#00574f;border-color:#00574f;color:#fff;}
+.tf-n{min-width:20px;height:20px;padding:0 6px;border-radius:10px;background:#fff;color:#00574f;font-size:12px;display:inline-flex;align-items:center;justify-content:center;}
+.tf-panel{display:flex;flex-direction:column;gap:8px;margin-top:10px;padding:12px;border-radius:16px;background:rgba(255,255,255,.55);}
+:root:not([data-theme="light"]) .tf-panel{background:rgba(255,255,255,.06);}
+.tech-item{position:relative;overflow:hidden;}
+.tech-item::before{content:"";position:absolute;top:0;bottom:0;inset-inline-start:0;width:5px;background:var(--lv,transparent);}
+.tech-item.lvb-principiante{--lv:var(--lv-p);} .tech-item.lvb-intermedio{--lv:var(--lv-i);} .tech-item.lvb-avanzado{--lv:var(--lv-a);}
+.tech-item .row1>.lvl-dot{display:none;}
+.tech-item .meta{display:flex;align-items:center;gap:8px;}
+.tech-item .meta::after{content:"▾";margin-inline-start:auto;opacity:.45;font-size:14px;transition:transform .18s;}
+.tech-item.open .meta::after{transform:rotate(180deg);}
+.tech-item:not(.open) .tech-links{display:none;}
+.tech-item .tags{margin-top:8px;}
+/* Botones de encadenamiento: neutros, con el nivel como punto; el verde oscuro queda para acciones */
+:root[data-theme="light"] .flow-btn{background:#f4fafc;border-color:rgba(13,33,38,.16);color:#0d2126;}
+:root[data-theme="light"] .flow-btn:hover{background:#e4f3f8;border-color:#00574f;}
+:root[data-theme="light"] .flow-btn.defense{background:#fdf5f4;border-color:rgba(192,80,63,.45);}
+:root[data-theme="light"] .flow-btn.defense:hover{background:#fbe9e6;border-color:#c0503f;}
+.lvl-principiante{background:var(--lv-p);} .lvl-intermedio{background:var(--lv-i);} .lvl-avanzado{background:var(--lv-a);}
+/* Ficha: hoja inferior con el mismo aspecto que la app (en PC sigue siendo panel lateral) */
+:root:not([data-theme="light"]){--sheet-bg:#1c1c1e;--sheet-ink:#f0f0f0;}
+#fichaOverlay{background:var(--sheet-bg) !important;color:var(--sheet-ink);top:auto;left:0;right:0;bottom:0;width:auto;height:auto;max-height:88vh;border-radius:24px 24px 0 0;box-shadow:0 0 0 100vmax rgba(7,32,41,.5);padding-top:12px;}
+#fichaOverlay::before{content:"";display:block;width:40px;height:4px;border-radius:2px;background:rgba(127,127,127,.45);margin:0 auto 4px;flex-shrink:0;}
+#fichaOverlay .ov-title{color:var(--sheet-ink) !important;font-size:15px;opacity:.7;}
+#fichaOverlay .ov-back{color:var(--sheet-ink) !important;border-color:rgba(127,127,127,.5);}
+#fichaOverlay #fichaBody{background:transparent;border:0;box-shadow:none;padding:4px 2px 8px;}
+#fichaOverlay .ficha-name{font-size:28px;line-height:1.1;text-transform:none;margin:0 0 6px;}
+#fichaOverlay .flow-meta{font-size:14px;opacity:.85;}
+#fichaOverlay .ficha-desc{font-size:15.5px;line-height:1.6;margin:12px 0 8px;}
+#fichaOverlay .flow-section-label{margin-top:20px;}
+@keyframes sheetUp{from{transform:translateY(24px);opacity:.4;}to{transform:none;opacity:1;}}
+#fichaOverlay[style*="display: flex"]{animation:sheetUp .22s ease-out;}
+@media (prefers-reduced-motion:reduce){#fichaOverlay[style*="display: flex"]{animation:none;}}
+@media (min-width:1025px){
+ #fichaOverlay{top:78px;left:auto;right:0;bottom:0;width:min(480px,42vw);max-height:none;border-radius:18px 0 0 0;box-shadow:-10px 0 34px rgba(0,0,0,.35);}
+ #fichaOverlay::before{display:none;}
 }
 </style>
 </head>
@@ -3801,7 +3849,7 @@ function renderTechniques(){
   if(!list.length){ el.innerHTML = `<div class="empty">${(activeFilter==="Favoritas" && !searchTerm.trim()) ? esc(t(FAV_TXT.empty)) : UI[LANG].emptySearch}</div>`; return; }
   const lvl = UI[LANG].levelLabels;
   el.innerHTML = list.map(x=>`
-    <div class="tech-item">
+    <div class="tech-item lvb-${x.level}">
       <div class="row1"><div class="name-wrap"><h4>${t(x.name)}</h4>${treeBtnHtml(x.id)}${favBtnHtml(x.id)}</div><span class="lvl-dot lvl-${x.level}"></span></div>
       <div class="meta">${CAT_LABELS[x.cat][LANG]} · ${lvl[x.level]}</div>
       <div class="desc">${t(x.desc)}</div>
@@ -3843,6 +3891,8 @@ function lvChipsHtml(attr, current){
   return [['all', fs.allLv], ['principiante', lv.principiante], ['intermedio', lv.intermedio], ['avanzado', lv.avanzado]]
     .map(it=>`<button type="button" class="chip${it[0]===current?' on':''}" ${attr}="${it[0]}">${it[0]==='all'?'':`<span class="lvl-dot lvl-${it[0]}"></span>`}${it[1]}</button>`).join('');
 }
+let techFiltOpen = false;
+const FILT_TXT = {"es":"Filtros","en":"Filters","val":"Filtres","pt":"Filtros","it":"Filtri","de":"Filter","fr":"Filtres","tr":"Filtreler","ar":"المرشحات"};
 function renderTechBar(shown, total, hidden){
   let bar = document.getElementById('techSubBar');
   if(!bar){ bar = document.createElement('div'); bar.id = 'techSubBar'; bar.className = 'sub-bar'; const l = document.getElementById('techList'); l.parentNode.insertBefore(bar, l); }
@@ -3850,7 +3900,10 @@ function renderTechBar(shown, total, hidden){
   if(hidden) return;
   const fs = FS();
   const gi = [['all','Gi + No-Gi'],['gi','Gi'],['nogi','No-Gi']].map(it=>`<button type="button" class="chip${it[0]===techGi?' on':''}" data-tgi="${it[0]}">${it[1]}</button>`).join('');
-  bar.innerHTML = `<div class="sub-row">${lvChipsHtml('data-tlv', techLevel)}</div><div class="sub-row">${gi}<span class="tech-count" role="status">${fs.shown} ${shown} ${fs.of} ${total}</span></div>`;
+  const n = (techLevel !== 'all' ? 1 : 0) + (techGi !== 'all' ? 1 : 0);
+  bar.innerHTML = `<div class="tf-bar"><button type="button" class="tf-btn${n?' has':''}" id="tfBtn" aria-expanded="${techFiltOpen}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4"/></svg><span>${esc(t(FILT_TXT))}</span>${n ? '<b class="tf-n">' + n + '</b>' : ''}</button><span class="tech-count" role="status">${fs.shown} ${shown} ${fs.of} ${total}</span></div>` +
+    (techFiltOpen ? `<div class="tf-panel"><div class="sub-row">${lvChipsHtml('data-tlv', techLevel)}</div><div class="sub-row">${gi}</div></div>` : '');
+  bar.querySelector('#tfBtn').onclick = ()=>{ techFiltOpen = !techFiltOpen; renderTechBar(shown, total, false); };
   bar.querySelectorAll('[data-tlv]').forEach(b=>b.onclick=()=>{ techLevel = b.dataset.tlv; renderTechniques(); });
   bar.querySelectorAll('[data-tgi]').forEach(b=>b.onclick=()=>{ techGi = b.dataset.tgi; renderTechniques(); });
 }
