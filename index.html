@@ -6,7 +6,7 @@
 <title>BJJ Linx — Guía y progreso de Brazilian Jiu-Jitsu</title>
 <meta name="description" content="Guía completa de Brazilian Jiu-Jitsu: técnicas, cinturones, reglas y seguimiento de tu progreso personal, en 9 idiomas: español, inglés, valenciano, portugués, italiano, alemán, francés, turco y árabe.">
 <meta name="theme-color" content="#68cff4">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Q8EWLEi97uoPjCA58rz5PMY7Gf0BVzlegroLqsf2Acg=' 'sha256-2VtAMw10j6gJ9yLVJnwqbh23Q+N866C3uNd0+0DYZ9M=' 'sha256-MFHbi9Hs9LeqcGrXnrBL3bJp/M08llIziECWJwEbEyI='; worker-src 'self'; manifest-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Q8EWLEi97uoPjCA58rz5PMY7Gf0BVzlegroLqsf2Acg=' 'sha256-2VtAMw10j6gJ9yLVJnwqbh23Q+N866C3uNd0+0DYZ9M=' 'sha256-JfbdP5jGy3bhdC5DjY1KS7WC16aWZPXIdb8xdMOMupA='; worker-src 'self'; manifest-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none';">
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), usb=(), payment=(), midi=(), magnetometer=(), gyroscope=(), accelerometer=(), fullscreen=(self)">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
@@ -1058,6 +1058,11 @@ img.flag{width:18px;height:12px;object-fit:cover;border-radius:2px;vertical-alig
  #fichaOverlay{top:78px;left:auto;right:0;bottom:0;width:min(480px,42vw);max-height:none;border-radius:18px 0 0 0;box-shadow:-10px 0 34px rgba(0,0,0,.35);}
  #fichaOverlay::before{display:none;}
 }
+
+.home-intro{margin:0 2px 14px;color:var(--obg-text,var(--canvas));max-width:760px;}
+.home-intro h2{margin:0 0 4px;font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:700;letter-spacing:.02em;line-height:1.1;text-transform:none;}
+.home-intro p{margin:0;font-size:14px;line-height:1.5;opacity:.85;}
+@media (min-width:1025px){.home-intro{margin-bottom:18px;}.home-intro h2{font-size:30px;}.home-intro p{font-size:15.5px;}}
 </style>
 </head>
 <body>
@@ -1242,6 +1247,7 @@ img.flag{width:18px;height:12px;object-fit:cover;border-radius:2px;vertical-alig
         </div>
         <span class="scroll-arrow right" aria-hidden="true">▶</span>
       </div>
+      <div class="home-intro" id="homeIntro"></div>
       <div class="home-grid">
         <div class="home-col">
           <div id="homeLog"></div>
@@ -3748,9 +3754,11 @@ function homeWeekData(){
   return {days, sessions, streak, ago};
 }
 function homeRel(n){ try{ return new Intl.RelativeTimeFormat(homeLoc(), {numeric:'auto'}).format(n,'day'); }catch(e){ return String(n); } }
+const HOME_INTRO = {"title":{"es":"Bienvenido a BJJ Linx","en":"Welcome to BJJ Linx","val":"Et donem la benvinguda a BJJ Linx","pt":"Bem-vindo ao BJJ Linx","it":"Benvenuto in BJJ Linx","de":"Willkommen bei BJJ Linx","fr":"Bienvenue dans BJJ Linx","tr":"BJJ Linx'e hoş geldin","ar":"مرحبًا بك في BJJ Linx"},"text":{"es":"Tu guía de Brazilian Jiu-Jitsu: {n} técnicas con sus encadenamientos y defensas, reglas, cinturones y el seguimiento de tu progreso. Todo en un solo sitio y funciona sin conexión.","en":"Your Brazilian Jiu-Jitsu guide: {n} techniques with their chains and defenses, rules, belts and progress tracking. All in one place, and it works offline.","val":"La teua guia de Brazilian Jiu-Jitsu: {n} tècniques amb els seus encadenaments i defenses, regles, cinturons i el seguiment del teu progrés. Tot en un sol lloc i funciona sense connexió.","pt":"Seu guia de Brazilian Jiu-Jitsu: {n} técnicas com seus encadeamentos e defesas, regras, faixas e acompanhamento do seu progresso. Tudo em um só lugar e funciona sem conexão.","it":"La tua guida al Brazilian Jiu-Jitsu: {n} tecniche con concatenazioni e difese, regole, cinture e monitoraggio dei progressi. Tutto in un posto solo e funziona offline.","de":"Dein Guide für Brazilian Jiu-Jitsu: {n} Techniken mit Verkettungen und Verteidigungen, Regeln, Gürtel und Fortschrittsverfolgung. Alles an einem Ort und offline nutzbar.","fr":"Ton guide du Brazilian Jiu-Jitsu : {n} techniques avec leurs enchaînements et défenses, règles, ceintures et suivi de ta progression. Tout au même endroit, et ça marche hors ligne.","tr":"Brazilian Jiu-Jitsu rehberin: bağlantıları ve savunmalarıyla {n} teknik, kurallar, kuşaklar ve ilerleme takibi. Hepsi tek yerde ve çevrimdışı çalışır.","ar":"دليلك للجيو جيتسو البرازيلية: {n} تقنية مع سلاسلها ودفاعاتها، والقواعد والأحزمة وتتبّع تقدّمك. كل شيء في مكان واحد ويعمل دون اتصال."}};
 function renderHomeDash(){
   try{
     const g = id => document.getElementById(id); if(!g('homeLog')) return;
+    g('homeIntro').innerHTML = '<h2>' + esc(t(HOME_INTRO.title)) + '</h2><p>' + esc(t(HOME_INTRO.text).replace('{n}', TECHNIQUES.length)) + '</p>';
     const hasData = PSTATE.log.length>0 || PSTATE.profile.name;
     // 1) Registro rápido
     g('homeLog').innerHTML = '<div class="hl-row"><button type="button" class="hl-main" id="homeLogBtn"><span class="hl-plus" aria-hidden="true">+</span><span>' + esc(t(HOME2.log)) + '</span></button>' +
