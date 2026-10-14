@@ -1,7 +1,7 @@
 /* BJJ Linx — service worker.
    Guarda la app en el móvil para que funcione SIN internet.
    Si algún día cambias iconos o este archivo, sube el número de VERSION (v1 -> v2). */
-const VERSION = 'bjjlinx-v1';
+const VERSION = 'bjjlinx-v19';
 const FONTS = 'bjjlinx-fonts-v1';
 const SHELL = [
   './', './index.html', './manifest.json',
@@ -24,6 +24,14 @@ self.addEventListener('activate', (event) => {
       .then(() => self.clients.claim())
   );
 });
+
+// Solo la página principal de la app (la raíz o index.html) usa esta copia guardada.
+// Otras páginas (por ejemplo diagnostico.html) nunca deben sustituirla.
+function isAppPage(href) {
+  const u = new URL(href);
+  const base = new URL('./', self.location).pathname;
+  return u.pathname === base || u.pathname === base + 'index.html';
+}
 
 // Páginas: primero internet (así siempre ves la última versión); si no hay internet o tarda, la copia guardada.
 async function networkFirst(url) {
@@ -53,7 +61,12 @@ self.addEventListener('fetch', (event) => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
   if (url.origin === self.location.origin) {
-    if (req.mode === 'navigate') { event.respondWith(networkFirst(req.url)); return; }
+    // La base de datos de técnicas se pide siempre a internet: nunca debe servirse una copia vieja de la caché.
+    if (url.pathname.endsWith('/techniques.json')) return;
+    if (req.mode === 'navigate') {
+      if (isAppPage(req.url)) event.respondWith(networkFirst(req.url));
+      return; // otras páginas: que las gestione el navegador, sin tocar la copia de la app
+    }
     event.respondWith(
       caches.match(req, { ignoreSearch: true }).then((hit) => hit || fetch(req).then((res) => {
         if (res && res.ok) { const copy = res.clone(); caches.open(VERSION).then((c) => c.put(req, copy)); }
