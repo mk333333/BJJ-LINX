@@ -6,7 +6,7 @@
 <title>BJJ Linx — Guía y progreso de Brazilian Jiu-Jitsu</title>
 <meta name="description" content="Guía completa de Brazilian Jiu-Jitsu: técnicas, cinturones, reglas y seguimiento de tu progreso personal, en 9 idiomas: español, inglés, valenciano, portugués, italiano, alemán, francés, turco y árabe.">
 <meta name="theme-color" content="#68cff4">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Q8EWLEi97uoPjCA58rz5PMY7Gf0BVzlegroLqsf2Acg=' 'sha256-2VtAMw10j6gJ9yLVJnwqbh23Q+N866C3uNd0+0DYZ9M=' 'sha256-QE1Jb/dlFEfMh07OUwxYjvDQUi9lNl8foJVWbx79qi0='; worker-src 'self'; manifest-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Q8EWLEi97uoPjCA58rz5PMY7Gf0BVzlegroLqsf2Acg=' 'sha256-2VtAMw10j6gJ9yLVJnwqbh23Q+N866C3uNd0+0DYZ9M=' 'sha256-UkrKixd31C8CiApvLIhmsWcgxiDNYrzdkBiM94+hw8s='; worker-src 'self'; manifest-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none';">
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), usb=(), payment=(), midi=(), magnetometer=(), gyroscope=(), accelerometer=(), fullscreen=(self)">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
@@ -939,6 +939,29 @@ img.flag{width:18px;height:12px;object-fit:cover;border-radius:2px;vertical-alig
 .tr-tips li{counter-increment:trn;position:relative;padding-inline-start:34px;font-size:14.5px;line-height:1.5;}
 .tr-tips li::before{content:counter(trn);position:absolute;inset-inline-start:0;top:1px;width:24px;height:24px;border-radius:50%;background:rgba(0,87,79,.16);display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:12.5px;}
 @media (min-width:1025px){ #p-entrenos #trainBody{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start;} #p-entrenos .tr-note{grid-column:1/-1;margin:0;} .tr-sec{margin:0;} }
+
+/* ===== Inicio: accesos rápidos y consejo del día ===== */
+.home-grid{display:flex;flex-direction:column;gap:12px;}
+.home-grid>.home-summary{margin:0;}
+.home-grid>.hero-card{margin:0;}
+.home-quick{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.hq-tile{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:84px;padding:10px 8px;border-radius:16px;border:1px solid var(--line);background:var(--bg-card);color:var(--canvas);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:.03em;cursor:pointer;text-align:center;}
+:root[data-theme="light"] .hq-tile{background:#fff;color:#0d2126;border-color:rgba(13,33,38,.08);box-shadow:0 2px 10px rgba(8,28,38,.08);}
+.hq-tile:active{transform:scale(.97);}
+.hq-l{line-height:1.1;overflow-wrap:anywhere;}
+.hq-b{position:absolute;top:6px;inset-inline-end:8px;min-width:20px;height:20px;padding:0 6px;border-radius:10px;background:#00574f;color:#fff;font-family:'Barlow',sans-serif;font-size:12px;display:inline-flex;align-items:center;justify-content:center;}
+.home-tip{padding:16px 18px;border-radius:18px;border:1px solid var(--line);background:var(--bg-card);color:var(--canvas);}
+:root[data-theme="light"] .home-tip{background:#fff;color:#0d2126;border-color:rgba(13,33,38,.08);box-shadow:0 2px 10px rgba(8,28,38,.08);}
+.ht-eye{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;opacity:.7;margin-bottom:6px;}
+.ht-text{font-size:16px;line-height:1.5;}
+.ht-more{margin-top:12px;min-height:40px;padding:0 14px;border-radius:20px;border:1px solid currentColor;background:transparent;color:inherit;font-weight:700;font-size:14px;cursor:pointer;opacity:.9;}
+@media (min-width:1025px){
+ .home-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch;}
+ .home-grid>.home-summary,.home-grid>.home-quick{grid-column:1/-1;}
+ .home-quick{grid-template-columns:repeat(4,1fr);}
+ .hq-tile{min-height:104px;font-size:18px;}
+ .ht-text{font-size:17px;}
+}
 </style>
 </head>
 <body>
@@ -1113,7 +1136,7 @@ img.flag{width:18px;height:12px;object-fit:cover;border-radius:2px;vertical-alig
 
   <main>
     <section id="inicio" class="active">
-      <div class="scroll-hint-wrap">
+      <div class="scroll-hint-wrap" style="display:none;">
         <span class="scroll-arrow left" aria-hidden="true">◀</span>
         <div class="filter-row" id="homeChips">
           <button class="chip" data-scroll="titleTips"><span id="hcTips"></span></button>
@@ -1123,22 +1146,18 @@ img.flag{width:18px;height:12px;object-fit:cover;border-radius:2px;vertical-alig
         </div>
         <span class="scroll-arrow right" aria-hidden="true">▶</span>
       </div>
-      <div class="home-summary" id="homeSummary" style="display:none;"></div>
-      <div class="hero-card">
-        <div class="eyebrow" id="heroEyebrow"></div>
-        <h3><span id="heroTechName">—</span><button type="button" class="tree-btn" id="heroTreeBtn" data-tree="0">🌳</button></h3>
-        <p id="heroTechDesc">—</p>
+      <div class="home-grid">
+        <div class="home-summary" id="homeSummary" style="display:none;"></div>
+        <div class="home-quick" id="homeQuick" role="group"></div>
+        <div class="hero-card">
+          <div class="eyebrow" id="heroEyebrow"></div>
+          <h3><span id="heroTechName">—</span><button type="button" class="tree-btn" id="heroTreeBtn" data-tree="0">🌳</button></h3>
+          <p id="heroTechDesc">—</p>
+        </div>
+        <div class="home-tip" id="homeTip"></div>
       </div>
-      <h2 class="section-title" id="titleTips"></h2>
-      <div id="tipsList"></div>
-      <h2 class="section-title" id="titleGi"></h2>
-      <div class="card" id="giEquip"></div>
-      <h2 class="section-title" id="titleNogi"></h2>
-      <div class="card" id="nogiEquip"></div>
-      <h2 class="section-title" id="titleGiSizes"></h2>
-      <div class="card">
-        <p style="font-size:12px; color:var(--canvas-dim); margin:0 0 10px;" id="giSizesNote"></p>
-        <div id="giSizesTable"></div>
+      <div id="homeSources" style="display:none;">
+        <h2 id="titleGiSizes"></h2><div class="card"><p id="giSizesNote"></p><div id="giSizesTable"></div></div>
       </div>
     </section>
 
@@ -1271,6 +1290,16 @@ img.flag{width:18px;height:12px;object-fit:cover;border-radius:2px;vertical-alig
       <div id="infoViewHistory" style="display:none;">
         <h2 class="section-title" id="titleHistory"></h2>
         <div id="historyList"></div>
+      </div>
+      <div id="infoViewTips" style="display:none;">
+        <h2 class="section-title" id="titleTips"></h2>
+        <div id="tipsList"></div>
+      </div>
+      <div id="infoViewEquip" style="display:none;">
+        <h2 class="section-title" id="titleGi"></h2>
+        <div class="card" id="giEquip"></div>
+        <h2 class="section-title" id="titleNogi"></h2>
+        <div class="card" id="nogiEquip"></div>
       </div>
       <div id="infoViewSizes" style="display:none;">
         <h2 class="section-title" id="titleGiSizes2"></h2>
@@ -3584,6 +3613,34 @@ function renderHero(){
   document.getElementById('heroTechName').textContent = t(tech.name);
   const hb = document.getElementById('heroTreeBtn'); hb.dataset.tree = String(tech.id); hb.setAttribute('aria-label', UI[LANG].treeBtnLabel); hb.title = UI[LANG].treeBtnLabel;
   document.getElementById('heroTechDesc').textContent = t(tech.desc);
+  renderHomeDash();
+}
+
+/* ================= INICIO: accesos rápidos + consejo del día ================= */
+const HOME_TXT = {"tipDay":{"es":"Consejo del día","en":"Tip of the day","val":"Consell del dia","pt":"Dica do dia","it":"Consiglio del giorno","de":"Tipp des Tages","fr":"Conseil du jour","tr":"Günün ipucu","ar":"نصيحة اليوم"},"tipAll":{"es":"Ver los {n} consejos","en":"See all {n} tips","val":"Vore els {n} consells","pt":"Ver as {n} dicas","it":"Vedi tutti i {n} consigli","de":"Alle {n} Tipps ansehen","fr":"Voir les {n} conseils","tr":"{n} ipucunun tümünü gör","ar":"عرض كل النصائح ({n})"},"tips":{"es":"Consejos","en":"Tips","val":"Consells","pt":"Dicas","it":"Consigli","de":"Tipps","fr":"Conseils","tr":"İpuçları","ar":"نصائح"},"equip":{"es":"Equipo","en":"Equipment","val":"Equip","pt":"Equipamento","it":"Attrezzatura","de":"Ausrüstung","fr":"Équipement","tr":"Ekipman","ar":"المعدات"},"quickAria":{"es":"Accesos rápidos","en":"Quick access","val":"Accessos ràpids","pt":"Acessos rápidos","it":"Accessi rapidi","de":"Schnellzugriff","fr":"Accès rapides","tr":"Hızlı erişim","ar":"وصول سريع"}};
+function renderHomeDash(){
+  try{
+    const q = document.getElementById('homeQuick'); const tp = document.getElementById('homeTip'); if(!q || !tp) return;
+    const favN = (typeof favCount === 'function') ? favCount() : 0;
+    const tiles = [
+      ['tecnicas','<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>', UI[LANG].nav.tecnicas, ''],
+      ['flow','<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.3 10.9 15.7 7.1M8.3 13.1l7.4 3.8"/></svg>', UI[LANG].nav.flow, ''],
+      ['favs','<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 16.9 6.8 19.7l1-5.9-4.3-4.1 5.9-.8z"/></svg>', t(FAV_TXT.chip), favN ? String(favN) : ''],
+      ['train','<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"/></svg>', t(TRAIN_TXT.title), '']
+    ];
+    q.setAttribute('aria-label', t(HOME_TXT.quickAria));
+    q.innerHTML = tiles.map(x => '<button type="button" class="hq-tile" data-q="' + x[0] + '">' + x[1] + '<span class="hq-l">' + esc(x[2]) + '</span>' + (x[3] ? '<span class="hq-b">' + esc(x[3]) + '</span>' : '') + '</button>').join('');
+    q.querySelectorAll('.hq-tile').forEach(b => b.addEventListener('click', () => {
+      const k = b.dataset.q;
+      if(k === 'tecnicas' || k === 'flow') goto(k);
+      else if(k === 'favs'){ goto('tecnicas'); const c = document.querySelector('#techFilters [data-filter="Favoritas"]'); if(c) c.click(); }
+      else if(k === 'train'){ goto('progreso'); gotoSub('entrenos'); }
+    }));
+    const i = Math.floor(Date.now() / 86400000) % TIPS.length;
+    tp.innerHTML = '<div class="ht-eye">' + esc(t(HOME_TXT.tipDay)) + '</div><div class="ht-text">' + t(TIPS[i]) + '</div>' +
+      '<button type="button" class="ht-more" id="homeTipAll">' + esc(t(HOME_TXT.tipAll).replace('{n}', TIPS.length)) + ' →</button>';
+    document.getElementById('homeTipAll').addEventListener('click', () => { goto('glosario'); setInfoView('tips'); });
+  }catch(e){}
 }
 function renderTips(){
   document.getElementById('tipsList').innerHTML = TIPS.map((tip,i)=>`<div class="tip-item"><div class="tip-num">${String(i+1).padStart(2,'0')}</div><div class="tip-text">${t(tip)}</div></div>`).join('');
@@ -5130,7 +5187,7 @@ const INFO_SIZES_LBL = {es:'Tallas',en:'Sizes',val:'Talles',pt:'Tamanhos',it:'Ta
 function updateInfoHub(){
   try{
     const u=UI[LANG];
-    const items=[['niveles',u.nav.niveles],['reglas',u.nav.reglas],['glossary',u.infoGlossary],['curiosities',u.infoCuriosities],['history',u.infoHistory],['sizes',t(INFO_SIZES_LBL)]];
+    const items=[['niveles',u.nav.niveles],['reglas',u.nav.reglas],['glossary',u.infoGlossary],['curiosities',u.infoCuriosities],['history',u.infoHistory],['sizes',t(INFO_SIZES_LBL)],['tips',t(HOME_TXT.tips)],['equip',t(HOME_TXT.equip)]];
     ['niveles','reglas','glosario'].forEach(id=>{
       const sec=document.getElementById(id); if(!sec) return;
       let hub=sec.querySelector(':scope > .info-hub-wrap .info-hub');
@@ -5398,6 +5455,8 @@ function setInfoView(view){
   document.getElementById('infoViewCuriosities').style.display = view==='curiosities' ? 'block' : 'none';
   document.getElementById('infoViewHistory').style.display = view==='history' ? 'block' : 'none';
   document.getElementById('infoViewSizes').style.display = view==='sizes' ? 'block' : 'none';
+  document.getElementById('infoViewTips').style.display = view==='tips' ? 'block' : 'none';
+  document.getElementById('infoViewEquip').style.display = view==='equip' ? 'block' : 'none';
   document.getElementById('infoViewGlossaryBtn').classList.toggle('on', view==='glossary');
   document.getElementById('infoViewCuriositiesBtn').classList.toggle('on', view==='curiosities');
   document.getElementById('infoViewHistoryBtn').classList.toggle('on', view==='history');
