@@ -1,7 +1,7 @@
 /* BJJ Linx — service worker.
    Guarda la app en el móvil para que funcione SIN internet.
    Si algún día cambias iconos o este archivo, sube el número de VERSION (v1 -> v2). */
-const VERSION = 'bjjlinx-v30';
+const VERSION = 'bjjlinx-v31';
 const FONTS = 'bjjlinx-fonts-v1';
 const SHELL = [
   './', './index.html', './manifest.json',

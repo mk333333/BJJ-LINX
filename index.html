@@ -6,7 +6,7 @@
 <title>BJJ Linx — Guía y progreso de Brazilian Jiu-Jitsu</title>
 <meta name="description" content="Guía completa de Brazilian Jiu-Jitsu: técnicas, cinturones, reglas y seguimiento de tu progreso personal, en 9 idiomas: español, inglés, valenciano, portugués, italiano, alemán, francés, turco y árabe.">
 <meta name="theme-color" content="#68cff4">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Q8EWLEi97uoPjCA58rz5PMY7Gf0BVzlegroLqsf2Acg=' 'sha256-2VtAMw10j6gJ9yLVJnwqbh23Q+N866C3uNd0+0DYZ9M=' 'sha256-JfbdP5jGy3bhdC5DjY1KS7WC16aWZPXIdb8xdMOMupA='; worker-src 'self'; manifest-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Q8EWLEi97uoPjCA58rz5PMY7Gf0BVzlegroLqsf2Acg=' 'sha256-2VtAMw10j6gJ9yLVJnwqbh23Q+N866C3uNd0+0DYZ9M=' 'sha256-8CwQwaAHJv88GX8d1RlHM97p7IBd+dgnDHdA1DDV+R4='; worker-src 'self'; manifest-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none';">
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), usb=(), payment=(), midi=(), magnetometer=(), gyroscope=(), accelerometer=(), fullscreen=(self)">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
@@ -1063,6 +1063,20 @@ img.flag{width:18px;height:12px;object-fit:cover;border-radius:2px;vertical-alig
 .home-intro h2{margin:0 0 4px;font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:700;letter-spacing:.02em;line-height:1.1;text-transform:none;}
 .home-intro p{margin:0;font-size:14px;line-height:1.5;opacity:.85;}
 @media (min-width:1025px){.home-intro{margin-bottom:18px;}.home-intro h2{font-size:30px;}.home-intro p{font-size:15.5px;}}
+
+/* ===== Horario ===== */
+.sc-rows{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
+.sc-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 10px;border-radius:12px;border:1px solid rgba(127,127,127,.28);}
+.sc-row.on{border-color:#00574f;background:rgba(0,87,79,.08);}
+.sc-day{display:flex;align-items:center;gap:12px;font-weight:600;font-size:15.5px;text-transform:capitalize;min-height:44px;flex:1;cursor:pointer;}
+.sc-day input{width:22px;height:22px;accent-color:#00574f;}
+.sc-time{width:120px;min-height:40px;}
+.sc-go{width:100%;min-height:52px;border-radius:16px;border:0;background:#00574f;color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:19px;letter-spacing:.03em;cursor:pointer;margin-top:6px;}
+.sc-note{font-size:12.5px;opacity:.75;line-height:1.45;margin:10px 0 0;}
+.sc-msg{font-size:13px;color:#c0503f;margin:6px 0 0;min-height:1em;}
+.hw-next{font-size:13.5px;margin-top:6px;}
+.hw-plan{margin-top:10px;min-height:38px;padding:0 14px;border-radius:19px;border:1px solid currentColor;background:transparent;color:inherit;font-weight:700;font-size:13.5px;cursor:pointer;}
+.hw-d.plan .hw-dot{border-style:dashed;border-color:#1fbfb3;}
 </style>
 </head>
 <body>
@@ -1625,6 +1639,8 @@ img.flag{width:18px;height:12px;object-fit:cover;border-radius:2px;vertical-alig
         <div style="font-size:11.5px; color:var(--obg-soft,var(--ink-soft)); margin-bottom:14px;" id="planPct"></div>
         <div class="card" id="planList"></div>
       </div>
+
+      <div class="prog-panel" id="p-horario"><div class="card" id="schedBody"></div></div>
 
       <div class="prog-panel" id="p-entrenos"><div id="trainBody"></div></div>
 
@@ -3729,6 +3745,88 @@ function renderHero(){
 /* ================= INICIO: accesos rápidos + consejo del día ================= */
 const HOME_TXT = {"tipDay":{"es":"Consejo del día","en":"Tip of the day","val":"Consell del dia","pt":"Dica do dia","it":"Consiglio del giorno","de":"Tipp des Tages","fr":"Conseil du jour","tr":"Günün ipucu","ar":"نصيحة اليوم"},"tipAll":{"es":"Ver los {n} consejos","en":"See all {n} tips","val":"Vore els {n} consells","pt":"Ver as {n} dicas","it":"Vedi tutti i {n} consigli","de":"Alle {n} Tipps ansehen","fr":"Voir les {n} conseils","tr":"{n} ipucunun tümünü gör","ar":"عرض كل النصائح ({n})"},"tips":{"es":"Consejos","en":"Tips","val":"Consells","pt":"Dicas","it":"Consigli","de":"Tipps","fr":"Conseils","tr":"İpuçları","ar":"نصائح"},"equip":{"es":"Equipo","en":"Equipment","val":"Equip","pt":"Equipamento","it":"Attrezzatura","de":"Ausrüstung","fr":"Équipement","tr":"Ekipman","ar":"المعدات"},"quickAria":{"es":"Accesos rápidos","en":"Quick access","val":"Accessos ràpids","pt":"Acessos rápidos","it":"Accessi rapidi","de":"Schnellzugriff","fr":"Accès rapides","tr":"Hızlı erişim","ar":"وصول سريع"}};
 
+
+/* ================= HORARIO DE ENTRENAMIENTO + exportación a calendario (.ics) ================= */
+const SCHED_TXT = {"subnav":{"es":"🗓️ Horario","en":"🗓️ Schedule","val":"🗓️ Horari","pt":"🗓️ Horário","it":"🗓️ Orario","de":"🗓️ Zeitplan","fr":"🗓️ Horaire","tr":"🗓️ Program","ar":"🗓️ الجدول"},"title":{"es":"Horario de entrenamiento","en":"Training schedule","val":"Horari d'entrenament","pt":"Horário de treino","it":"Orario degli allenamenti","de":"Trainingszeiten","fr":"Horaire d'entraînement","tr":"Antrenman programı","ar":"جدول التدريب"},"desc":{"es":"Elige tus días y horas. Se guardan en este dispositivo y puedes añadirlos a tu calendario con aviso.","en":"Pick your days and times. They're saved on this device and you can add them to your calendar with a reminder.","val":"Tria els teus dies i hores. Es guarden en este dispositiu i pots afegir-los al teu calendari amb avís.","pt":"Escolha seus dias e horários. Ficam guardados neste dispositivo e você pode adicioná-los ao calendário com lembrete.","it":"Scegli giorni e orari. Restano salvati su questo dispositivo e puoi aggiungerli al calendario con un promemoria.","de":"Wähle deine Tage und Uhrzeiten. Sie bleiben auf diesem Gerät gespeichert und lassen sich mit Erinnerung in deinen Kalender übernehmen.","fr":"Choisis tes jours et heures. Ils sont enregistrés sur cet appareil et tu peux les ajouter à ton calendrier avec un rappel.","tr":"Gün ve saatlerini seç. Bu cihazda saklanır ve hatırlatıcıyla takvimine ekleyebilirsin.","ar":"اختر أيامك وأوقاتك. تُحفظ على هذا الجهاز ويمكنك إضافتها إلى تقويمك مع تذكير."},"time":{"es":"Hora","en":"Time","val":"Hora","pt":"Hora","it":"Ora","de":"Uhrzeit","fr":"Heure","tr":"Saat","ar":"الوقت"},"dur":{"es":"Duración (min)","en":"Duration (min)","val":"Duració (min)","pt":"Duração (min)","it":"Durata (min)","de":"Dauer (Min.)","fr":"Durée (min)","tr":"Süre (dk)","ar":"المدة (دقيقة)"},"place":{"es":"Lugar (opcional)","en":"Place (optional)","val":"Lloc (opcional)","pt":"Local (opcional)","it":"Luogo (facoltativo)","de":"Ort (optional)","fr":"Lieu (facultatif)","tr":"Yer (isteğe bağlı)","ar":"المكان (اختياري)"},"remind":{"es":"Aviso","en":"Reminder","val":"Avís","pt":"Lembrete","it":"Promemoria","de":"Erinnerung","fr":"Rappel","tr":"Hatırlatıcı","ar":"التذكير"},"r0":{"es":"Sin aviso","en":"No reminder","val":"Sense avís","pt":"Sem lembrete","it":"Nessuno","de":"Keine","fr":"Aucun","tr":"Yok","ar":"بدون تذكير"},"r30":{"es":"30 min antes","en":"30 min before","val":"30 min abans","pt":"30 min antes","it":"30 min prima","de":"30 Min. vorher","fr":"30 min avant","tr":"30 dk önce","ar":"قبل 30 دقيقة"},"r60":{"es":"1 hora antes","en":"1 hour before","val":"1 hora abans","pt":"1 hora antes","it":"1 ora prima","de":"1 Std. vorher","fr":"1 h avant","tr":"1 saat önce","ar":"قبل ساعة"},"r120":{"es":"2 horas antes","en":"2 hours before","val":"2 hores abans","pt":"2 horas antes","it":"2 ore prima","de":"2 Std. vorher","fr":"2 h avant","tr":"2 saat önce","ar":"قبل ساعتين"},"export":{"es":"Añadir a mi calendario (.ics)","en":"Add to my calendar (.ics)","val":"Afegir al meu calendari (.ics)","pt":"Adicionar ao meu calendário (.ics)","it":"Aggiungi al mio calendario (.ics)","de":"Zu meinem Kalender hinzufügen (.ics)","fr":"Ajouter à mon calendrier (.ics)","tr":"Takvimime ekle (.ics)","ar":"إضافة إلى تقويمي (.ics)"},"note":{"es":"Se descargará un archivo .ics. Ábrelo y tu calendario (Google, Apple u Outlook) añadirá tus entrenamientos cada semana.","en":"A .ics file will be downloaded. Open it and your calendar (Google, Apple or Outlook) will add your sessions every week.","val":"Es descarregarà un fitxer .ics. Obri'l i el teu calendari (Google, Apple o Outlook) afegirà els teus entrenaments cada setmana.","pt":"Será baixado um arquivo .ics. Abra-o e seu calendário (Google, Apple ou Outlook) adicionará seus treinos toda semana.","it":"Verrà scaricato un file .ics. Aprilo e il tuo calendario (Google, Apple o Outlook) aggiungerà i tuoi allenamenti ogni settimana.","de":"Es wird eine .ics-Datei heruntergeladen. Öffne sie, und dein Kalender (Google, Apple oder Outlook) trägt deine Einheiten jede Woche ein.","fr":"Un fichier .ics sera téléchargé. Ouvre-le et ton calendrier (Google, Apple ou Outlook) ajoutera tes entraînements chaque semaine.","tr":"Bir .ics dosyası indirilecek. Aç; takvimin (Google, Apple veya Outlook) antrenmanlarını her hafta ekler.","ar":"سيتم تنزيل ملف .ics. افتحه وسيضيف تقويمك (جوجل أو آبل أو أوتلوك) تدريباتك كل أسبوع."},"pick":{"es":"Elige al menos un día.","en":"Pick at least one day.","val":"Tria almenys un dia.","pt":"Escolha pelo menos um dia.","it":"Scegli almeno un giorno.","de":"Wähle mindestens einen Tag.","fr":"Choisis au moins un jour.","tr":"En az bir gün seç.","ar":"اختر يومًا واحدًا على الأقل."},"event":{"es":"Entrenamiento de BJJ","en":"BJJ training","val":"Entrenament de BJJ","pt":"Treino de BJJ","it":"Allenamento di BJJ","de":"BJJ-Training","fr":"Entraînement de BJJ","tr":"BJJ antrenmanı","ar":"تدريب جيو جيتسو"},"next":{"es":"Próximo entrenamiento","en":"Next session","val":"Pròxim entrenament","pt":"Próximo treino","it":"Prossimo allenamento","de":"Nächstes Training","fr":"Prochain entraînement","tr":"Sonraki antrenman","ar":"التدريب القادم"},"plan":{"es":"Planificar mis días","en":"Plan my days","val":"Planificar els meus dies","pt":"Planejar meus dias","it":"Pianifica i miei giorni","de":"Meine Tage planen","fr":"Planifier mes jours","tr":"Günlerimi planla","ar":"خطّط لأيامي"},"edit":{"es":"Editar horario","en":"Edit schedule","val":"Editar horari","pt":"Editar horário","it":"Modifica orario","de":"Zeiten ändern","fr":"Modifier l'horaire","tr":"Programı düzenle","ar":"تعديل الجدول"}};
+const SCHED_CODES = ['MO','TU','WE','TH','FR','SA','SU'];
+function schedGet(){
+  const d = {days:{}, dur:90, remind:60, place:''};
+  try{
+    const raw = PSTATE.profile && PSTATE.profile.schedule; if(!raw) return d;
+    const p = JSON.parse(String(raw));
+    if(p && typeof p === 'object'){
+      for(let i=0;i<7;i++){ const x = p.days && p.days[i]; if(x && typeof x === 'object' && /^([01]\d|2[0-3]):[0-5]\d$/.test(String(x.time))) d.days[i] = {time:String(x.time)}; }
+      const du = Number(p.dur); if(du >= 15 && du <= 300) d.dur = Math.round(du);
+      const rm = Number(p.remind); if([0,30,60,120].indexOf(rm) >= 0) d.remind = rm;
+      if(typeof p.place === 'string') d.place = p.place.slice(0,80);
+    }
+  }catch(e){}
+  return d;
+}
+async function schedSave(d){ PSTATE.profile.schedule = JSON.stringify(d); try{ await stSet('profile', PSTATE.profile); }catch(e){} try{ renderHomeDash(); }catch(e){} }
+function schedNext(){
+  const d = schedGet(); const now = new Date(); let best = null;
+  for(let off=0; off<=7 && !best; off++){
+    const day = new Date(now.getFullYear(), now.getMonth(), now.getDate()+off); const idx = (day.getDay()+6)%7;
+    const x = d.days[idx]; if(!x) continue;
+    const hm = x.time.split(':').map(Number); const at = new Date(day.getFullYear(), day.getMonth(), day.getDate(), hm[0], hm[1]);
+    if(at >= now) best = {at, off, time:x.time};
+  }
+  return best;
+}
+function schedNextText(){
+  const n = schedNext(); if(!n) return '';
+  const loc = homeLoc(); let when;
+  try{ when = n.off <= 1 ? new Intl.RelativeTimeFormat(loc, {numeric:'auto'}).format(n.off, 'day') : n.at.toLocaleDateString(loc, {weekday:'long'}); }catch(e){ when = n.at.toLocaleDateString(loc, {weekday:'long'}); }
+  return when + ' · ' + n.time;
+}
+function icsEsc(s){ return String(s).replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/\r?\n/g,'\\n'); }
+function icsFold(line){ const out = []; let s = line; while(s.length > 73){ out.push(s.slice(0,73)); s = ' ' + s.slice(73); } out.push(s); return out.join('\r\n'); }
+function buildIcs(){
+  const d = schedGet(); const now = new Date(); const z = n => String(n).padStart(2,'0');
+  const stamp = now.getUTCFullYear() + z(now.getUTCMonth()+1) + z(now.getUTCDate()) + 'T' + z(now.getUTCHours()) + z(now.getUTCMinutes()) + z(now.getUTCSeconds()) + 'Z';
+  const lines = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//BJJ Linx//Horario//ES','CALSCALE:GREGORIAN','METHOD:PUBLISH'];
+  Object.keys(d.days).forEach(k => {
+    const idx = Number(k); const hm = d.days[k].time.split(':').map(Number);
+    const base = new Date(now.getFullYear(), now.getMonth(), now.getDate()); const delta = ((idx - ((base.getDay()+6)%7)) + 7) % 7;
+    const start = new Date(base.getFullYear(), base.getMonth(), base.getDate()+delta, hm[0], hm[1]);
+    const end = new Date(start.getTime() + d.dur*60000);
+    const f = x => x.getFullYear() + z(x.getMonth()+1) + z(x.getDate()) + 'T' + z(x.getHours()) + z(x.getMinutes()) + '00';
+    lines.push('BEGIN:VEVENT','UID:bjjlinx-' + SCHED_CODES[idx] + '-' + d.days[k].time.replace(':','') + '@bjj-linx','DTSTAMP:' + stamp,'DTSTART:' + f(start),'DTEND:' + f(end),'RRULE:FREQ=WEEKLY;BYDAY=' + SCHED_CODES[idx],icsFold('SUMMARY:' + icsEsc(t(SCHED_TXT.event))));
+    if(d.place) lines.push(icsFold('LOCATION:' + icsEsc(d.place)));
+    if(d.remind > 0) lines.push('BEGIN:VALARM','ACTION:DISPLAY',icsFold('DESCRIPTION:' + icsEsc(t(SCHED_TXT.event))),'TRIGGER:-PT' + d.remind + 'M','END:VALARM');
+    lines.push('END:VEVENT');
+  });
+  lines.push('END:VCALENDAR');
+  return lines.join('\r\n') + '\r\n';
+}
+function schedExport(){
+  const d = schedGet(); const msg = document.getElementById('schedMsg');
+  if(!Object.keys(d.days).length){ if(msg) msg.textContent = t(SCHED_TXT.pick); return; }
+  if(msg) msg.textContent = '';
+  const blob = new Blob([buildIcs()], {type:'text/calendar;charset=utf-8'});
+  const url = URL.createObjectURL(blob); const a = document.createElement('a');
+  a.href = url; a.download = 'bjj-linx-horario.ics'; document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 4000);
+}
+function renderSched(){
+  const el = document.getElementById('schedBody'); if(!el) return;
+  const d = schedGet(); const loc = homeLoc();
+  const rows = []; for(let i=0;i<7;i++){ const name = new Date(2024,0,1+i).toLocaleDateString(loc, {weekday:'long'}); const on = !!d.days[i];
+    rows.push('<div class="sc-row' + (on?' on':'') + '"><label class="sc-day"><input type="checkbox" data-sd="' + i + '"' + (on?' checked':'') + '><span>' + esc(name) + '</span></label><input type="time" class="sc-time" data-st="' + i + '" value="' + (on ? d.days[i].time : '19:00') + '"' + (on?'':' disabled') + ' aria-label="' + esc(t(SCHED_TXT.time)) + '"></div>'); }
+  el.innerHTML = '<div class="sc-rows">' + rows.join('') + '</div>' +
+    '<div class="field-row"><div class="field"><label for="scDur">' + esc(t(SCHED_TXT.dur)) + '</label><input type="number" id="scDur" min="15" max="300" step="5" value="' + d.dur + '"></div>' +
+    '<div class="field"><label for="scRem">' + esc(t(SCHED_TXT.remind)) + '</label><select id="scRem">' + [[0,'r0'],[30,'r30'],[60,'r60'],[120,'r120']].map(x => '<option value="' + x[0] + '"' + (x[0]===d.remind?' selected':'') + '>' + esc(t(SCHED_TXT[x[1]])) + '</option>').join('') + '</select></div></div>' +
+    '<div class="field"><label for="scPlace">' + esc(t(SCHED_TXT.place)) + '</label><input type="text" id="scPlace" maxlength="80" value="' + esc(d.place || PSTATE.profile.academy || '') + '"></div>' +
+    '<button type="button" class="sc-go" id="scExport">' + esc(t(SCHED_TXT.export)) + '</button><p class="sc-note">' + esc(t(SCHED_TXT.note)) + '</p><p class="sc-msg" id="schedMsg" role="status"></p>';
+  const collect = () => { const nd = {days:{}, dur:Number(el.querySelector('#scDur').value)||90, remind:Number(el.querySelector('#scRem').value)||0, place:el.querySelector('#scPlace').value.trim().slice(0,80)};
+    el.querySelectorAll('[data-sd]').forEach(c => { if(c.checked){ const tm = el.querySelector('[data-st="' + c.dataset.sd + '"]').value; if(/^\d\d:\d\d$/.test(tm)) nd.days[c.dataset.sd] = {time:tm}; } }); return nd; };
+  el.querySelectorAll('[data-sd]').forEach(c => c.addEventListener('change', () => { const tm = el.querySelector('[data-st="' + c.dataset.sd + '"]'); tm.disabled = !c.checked; c.closest('.sc-row').classList.toggle('on', c.checked); schedSave(collect()); }));
+  el.querySelectorAll('[data-st],#scDur,#scRem,#scPlace').forEach(x => x.addEventListener('change', () => schedSave(collect())));
+  el.querySelector('#scExport').onclick = () => { schedSave(collect()); schedExport(); };
+}
+PROG_PANELS.splice(2, 0, {key:"horario", icon:"🗓️", title:SCHED_TXT.title, desc:SCHED_TXT.desc});
+
 /* ================= INICIO v2: registro rápido, semana, competición, favoritas y recientes ================= */
 const HOME2 = {"log":{"es":"Registrar entrenamiento","en":"Log a session","val":"Registrar entrenament","pt":"Registrar treino","it":"Registra allenamento","de":"Training eintragen","fr":"Enregistrer un entraînement","tr":"Antrenman kaydet","ar":"تسجيل تدريب"},"week":{"es":"Esta semana","en":"This week","val":"Esta setmana","pt":"Esta semana","it":"Questa settimana","de":"Diese Woche","fr":"Cette semaine","tr":"Bu hafta","ar":"هذا الأسبوع"},"of":{"es":"{a} de {b} sesiones","en":"{a} of {b} sessions","val":"{a} de {b} sessions","pt":"{a} de {b} sessões","it":"{a} di {b} sessioni","de":"{a} von {b} Einheiten","fr":"{a} sur {b} séances","tr":"{a} / {b} seans","ar":"{a} من {b} حصص"},"goal":{"es":"Objetivo semanal","en":"Weekly goal","val":"Objectiu setmanal","pt":"Meta semanal","it":"Obiettivo settimanale","de":"Wochenziel","fr":"Objectif hebdo","tr":"Haftalık hedef","ar":"الهدف الأسبوعي"},"streak":{"es":"semanas seguidas","en":"weeks in a row","val":"setmanes seguides","pt":"semanas seguidas","it":"settimane di fila","de":"Wochen in Folge","fr":"semaines d'affilée","tr":"hafta üst üste","ar":"أسابيع متتالية"},"hours":{"es":"horas","en":"hours","val":"hores","pt":"horas","it":"ore","de":"Stunden","fr":"heures","tr":"saat","ar":"ساعات"},"last":{"es":"Última sesión","en":"Last session","val":"Última sessió","pt":"Última sessão","it":"Ultima sessione","de":"Letzte Einheit","fr":"Dernière séance","tr":"Son seans","ar":"آخر حصة"},"none":{"es":"Aún no has registrado ninguna sesión.","en":"You haven't logged a session yet.","val":"Encara no has registrat cap sessió.","pt":"Você ainda não registrou nenhuma sessão.","it":"Non hai ancora registrato nessuna sessione.","de":"Du hast noch keine Einheit eingetragen.","fr":"Tu n'as pas encore enregistré de séance.","tr":"Henüz hiç seans kaydetmedin.","ar":"لم تسجّل أي حصة بعد."},"startT":{"es":"Empieza aquí","en":"Start here","val":"Comença ací","pt":"Comece aqui","it":"Inizia da qui","de":"Hier starten","fr":"Commence ici","tr":"Buradan başla","ar":"ابدأ من هنا"},"s1":{"es":"Completa tu perfil: cinturón y grados","en":"Fill in your profile: belt and stripes","val":"Completa el teu perfil: cinturó i graus","pt":"Complete seu perfil: faixa e graus","it":"Completa il tuo profilo: cintura e gradi","de":"Vervollständige dein Profil: Gürtel und Grade","fr":"Complète ton profil : ceinture et grades","tr":"Profilini tamamla: kuşak ve derece","ar":"أكمل ملفك: الحزام والدرجات"},"s2":{"es":"Registra tu primer entrenamiento","en":"Log your first session","val":"Registra el teu primer entrenament","pt":"Registre seu primeiro treino","it":"Registra il tuo primo allenamento","de":"Trage deine erste Einheit ein","fr":"Enregistre ta première séance","tr":"İlk antrenmanını kaydet","ar":"سجّل أول تدريب لك"},"s3":{"es":"Marca técnicas como favoritas con la ★","en":"Mark techniques as favourites with the ★","val":"Marca tècniques com a favorites amb la ★","pt":"Marque técnicas como favoritas com a ★","it":"Segna le tecniche come preferite con la ★","de":"Markiere Techniken mit dem ★ als Favoriten","fr":"Marque des techniques en favoris avec la ★","tr":"Teknikleri ★ ile favori olarak işaretle","ar":"علّم التقنيات كمفضّلة بالنجمة ★"},"comp":{"es":"Próxima competición","en":"Next competition","val":"Pròxima competició","pt":"Próxima competição","it":"Prossima gara","de":"Nächster Wettkampf","fr":"Prochaine compétition","tr":"Sonraki müsabaka","ar":"المنافسة القادمة"},"compPrep":{"es":"Preparar","en":"Prepare","val":"Preparar","pt":"Preparar","it":"Prepara","de":"Vorbereiten","fr":"Préparer","tr":"Hazırlan","ar":"تحضير"},"favs":{"es":"Tus favoritas","en":"Your favourites","val":"Les teues favorites","pt":"Suas favoritas","it":"I tuoi preferiti","de":"Deine Favoriten","fr":"Tes favoris","tr":"Favorilerin","ar":"مفضلاتك"},"recent":{"es":"Vistas recientemente","en":"Recently viewed","val":"Vistes recentment","pt":"Vistas recentemente","it":"Viste di recente","de":"Zuletzt angesehen","fr":"Vues récemment","tr":"Son görüntülenenler","ar":"شوهدت مؤخرًا"}};
 const LOCALE_OF = {es:'es', en:'en', val:'ca', pt:'pt', it:'it', de:'de', fr:'fr', tr:'tr', ar:'ar'};
@@ -3742,7 +3840,7 @@ function weekGoal(){ const g = Number(PSTATE.profile && PSTATE.profile.weekGoal)
 function homeWeekData(){
   const now = new Date(), mon = mondayOf(now);
   const days = []; const logDays = new Set(PSTATE.log.map(l=>String(l.date||'').slice(0,10)).filter(Boolean));
-  for(let i=0;i<7;i++){ const d = new Date(mon); d.setDate(mon.getDate()+i); days.push({d, k:dayKey(d), on:logDays.has(dayKey(d)), today:dayKey(d)===dayKey(now), future:d>now && dayKey(d)!==dayKey(now)}); }
+  for(let i=0;i<7;i++){ const d = new Date(mon); d.setDate(mon.getDate()+i); days.push({d, idx:i, k:dayKey(d), on:logDays.has(dayKey(d)), today:dayKey(d)===dayKey(now), future:d>now && dayKey(d)!==dayKey(now)}); }
   const sessions = days.reduce((s,x)=>s+PSTATE.log.filter(l=>String(l.date||'').slice(0,10)===x.k).length,0);
   // semanas seguidas con al menos una sesión (la semana en curso cuenta si ya tiene; si no, se parte de la anterior)
   const hasWeek = (start)=>{ for(let i=0;i<7;i++){ const d = new Date(start); d.setDate(start.getDate()+i); if(logDays.has(dayKey(d))) return true; } return false; };
@@ -3766,17 +3864,21 @@ function renderHomeDash(){
     g('homeLogBtn').onclick = () => { goto('progreso'); gotoSub('historial'); const f = g('logForm'); if(f && !f.classList.contains('open')) f.classList.add('open'); try{ f.scrollIntoView({block:'start'}); }catch(e){} const d = g('lgDuration'); if(d) setTimeout(()=>{ try{ d.focus({preventScroll:true}); }catch(e){} }, 150); };
     g('homeTimerQuick').onclick = () => openTimer();
     // 2) Semana
+    const sch = schedGet(); const nextTxt = schedNextText();
     const w = homeWeekData(), goal = weekGoal(), pct = Math.min(100, Math.round(w.sessions/goal*100));
     const wd = new Intl.DateTimeFormat(homeLoc(), {weekday:'narrow'});
     const lastTxt = w.ago===null ? esc(t(HOME2.none)) : '<b>' + esc(t(HOME2.last)) + ':</b> ' + esc(homeRel(-w.ago));
     const totalH = (PSTATE.log.reduce((s,l)=>s+(Number(l.duration)||0),0)/60).toFixed(1);
     g('homeWeek').innerHTML = '<div class="hw-card"><div class="hw-top"><b>' + esc(t(HOME2.week)) + '</b><span class="hw-of">' + esc(t(HOME2.of).replace('{a}', w.sessions).replace('{b}', goal)) + '</span></div>' +
-      '<div class="hw-days" role="list">' + w.days.map(x => '<div class="hw-d' + (x.on?' on':'') + (x.today?' today':'') + (x.future?' fut':'') + '" role="listitem"><span class="hw-dl">' + esc(wd.format(x.d).replace('.','').slice(0,2)) + '</span><span class="hw-dot">' + (x.on?'✓':'') + '</span></div>').join('') + '</div>' +
+      '<div class="hw-days" role="list">' + w.days.map(x => '<div class="hw-d' + (x.on?' on':'') + (sch.days[x.idx]?' plan':'') + (x.today?' today':'') + (x.future?' fut':'') + '" role="listitem"><span class="hw-dl">' + esc(wd.format(x.d).replace('.','').slice(0,2)) + '</span><span class="hw-dot">' + (x.on?'✓':'') + '</span></div>').join('') + '</div>' +
       '<div class="hw-bar" aria-hidden="true"><i style="width:' + pct + '%"></i></div>' +
       '<div class="hw-stats"><div><b>' + w.streak + '</b><span>' + esc(t(HOME2.streak)) + '</span></div><div><b>' + totalH + '</b><span>' + esc(t(HOME2.hours)) + '</span></div></div>' +
       '<div class="hw-last">' + lastTxt + '</div>' +
+      (nextTxt ? '<div class="hw-next"><b>' + esc(t(SCHED_TXT.next)) + ':</b> ' + esc(nextTxt) + '</div>' : '') +
+      '<button type="button" class="hw-plan" id="homePlanBtn">' + esc(t(Object.keys(sch.days).length ? SCHED_TXT.edit : SCHED_TXT.plan)) + '</button>' +
       '<div class="hw-goal"><span>' + esc(t(HOME2.goal)) + '</span><span class="hw-step"><button type="button" id="wgMinus" aria-label="-">−</button><b>' + goal + '</b><button type="button" id="wgPlus" aria-label="+">+</button></span></div></div>';
     const setGoal = async d => { PSTATE.profile.weekGoal = Math.max(1, Math.min(14, weekGoal()+d)); try{ await stSet('profile', PSTATE.profile); }catch(e){} renderHomeDash(); };
+    g('homePlanBtn').onclick = () => { goto('progreso'); gotoSub('horario'); };
     g('wgMinus').onclick = () => setGoal(-1); g('wgPlus').onclick = () => setGoal(1);
     // 3) Empieza aquí (sin datos)
     const st = g('homeStart');
@@ -4169,8 +4271,8 @@ function renderProgHeader(){
 }
 function renderProgSubnav(){
   const u = UI[LANG].prog;
-  const subs = ["perfil","historial","entrenos","tecnicas","flows","stats","competiciones","companeros","objetivos","coach"];
-  document.getElementById('progSubnav').innerHTML = subs.map(s=>`<button class="chip ${s===activeSub?'on':''}" data-sub="${s}">${s==='entrenos'?esc(t(TRAIN_TXT.subnav)):u.subnav[s]}</button>`).join('');
+  const subs = ["perfil","historial","horario","entrenos","tecnicas","flows","stats","competiciones","companeros","objetivos","coach"];
+  document.getElementById('progSubnav').innerHTML = subs.map(s=>`<button class="chip ${s===activeSub?'on':''}" data-sub="${s}">${s==='entrenos'?esc(t(TRAIN_TXT.subnav)):s==='horario'?esc(t(SCHED_TXT.subnav)):u.subnav[s]}</button>`).join('');
   document.querySelectorAll('#progSubnav .chip').forEach(ch=>{
     ch.onclick = ()=>{ activeSub = ch.dataset.sub; gotoSub(activeSub); };
   });
@@ -5019,6 +5121,7 @@ function renderProgAll(){
   renderProgSubnav();
   renderPanelHeads();
   renderTrain();
+  renderSched();
   fillProfileForm();
   applyBeltTitleColor();
   renderWeightLog();
