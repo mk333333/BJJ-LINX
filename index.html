@@ -890,6 +890,14 @@ i.ts-in[data-ts="stat"]{font-family:'Staatliches','Oswald',Impact,sans-serif;fon
 @media (max-width:360px){#timerOverlay .tm-btn{font-size:13.5px;}#timerOverlay .tm-card{padding-inline:12px;}}
 #timerOverlay .tm-ctl{flex-wrap:wrap;}#timerOverlay .tm-go{flex:1 0 100%;}#timerOverlay .tm-btn{white-space:normal;line-height:1.1;overflow-wrap:anywhere;}
 img.flag{width:18px;height:12px;object-fit:cover;border-radius:2px;vertical-align:middle;display:inline-block;flex-shrink:0;box-shadow:0 0 0 1px rgba(0,0,0,.18);}
+/* ===== PC: logo y título más grandes ===== */
+@media (min-width:1025px){
+ header.top{padding:30px 44px 22px;}
+ .brand{gap:18px;}
+ .brand .mark{width:72px;height:72px;}
+ .brand h1{font-size:50px;letter-spacing:.05em;line-height:1;}
+ .subtitle{font-size:16px;margin-top:14px;}
+}
 </style>
 </head>
 <body>
@@ -933,10 +941,6 @@ img.flag{width:18px;height:12px;object-fit:cover;border-radius:2px;vertical-alig
               <button type="button" class="unit-btn" data-themepref="dark" id="optThemeDark" style="flex:1;"></button>
               <button type="button" class="unit-btn" data-themepref="auto" id="optThemeAuto" style="flex:1;"></button>
             </div>
-          </div>
-          <div class="card" style="max-width:420px;margin-top:14px;">
-            <div class="set-lbl" id="optTitleLbl"></div>
-            <div class="ts-grid" id="titleStyleGrid" role="group"></div>
           </div>
           <div class="card" style="max-width:420px;">
             <div id="settingsFontSizeLabel" style="font-family:'Barlow',sans-serif;font-size:13px;color:var(--canvas-dim);margin-bottom:8px;"></div>
@@ -6038,7 +6042,7 @@ const TITLE_STYLES = [
   {id:'lower',   h:'bjj<span>.</span>linx'},
   {id:'stat',    h:'BJJ<span>•</span>LINX'}
 ];
-function getTitleStyle(){ let v = null; try{ v = localStorage.getItem('bjjlinx_titlestyle'); }catch(e){} return TITLE_STYLES.some(s=>s.id===v) ? v : 'classic'; }
+function getTitleStyle(){ return 'classic'; }   // el estilo del título ya no se elige: queda fijo
 function applyTitleStyle(id){
   const st = TITLE_STYLES.find(s=>s.id===id) || TITLE_STYLES[0];
   const h1 = document.getElementById('brandTitle'); if(!h1) return;
