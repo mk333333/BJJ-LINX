@@ -6,7 +6,7 @@
 <title>BJJ Linx — Guía y progreso de Brazilian Jiu-Jitsu</title>
 <meta name="description" content="Guía completa de Brazilian Jiu-Jitsu: técnicas, cinturones, reglas y seguimiento de tu progreso personal, en 9 idiomas: español, inglés, valenciano, portugués, italiano, alemán, francés, turco y árabe.">
 <meta name="theme-color" content="#68cff4">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; worker-src 'self'; manifest-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Q8EWLEi97uoPjCA58rz5PMY7Gf0BVzlegroLqsf2Acg=' 'sha256-2VtAMw10j6gJ9yLVJnwqbh23Q+N866C3uNd0+0DYZ9M=' 'sha256-mO1Kakvf+ds6nhdwwLYjs3x3/18Rwn8nw/BDtKIeMmM='; worker-src 'self'; manifest-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none';">
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), usb=(), payment=(), midi=(), magnetometer=(), gyroscope=(), accelerometer=(), fullscreen=(self)">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
@@ -20,9 +20,13 @@
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700&family=Oswald:wght@600&family=Bebas+Neue&family=Anton&family=Russo+One&family=Teko:wght@600&family=Saira+Condensed:wght@700&family=Staatliches&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700&family=Oswald:wght@600&family=Bebas+Neue&family=Anton&family=Russo+One&family=Teko:wght@600&family=Saira+Condensed:wght@700&family=Staatliches&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 <script>
+  /* Seguridad: no se permite incrustar la web en otra página (clickjacking) */
+  try{ if(window.top!==window.self){ document.documentElement.style.display="none"; try{ window.top.location.replace(window.self.location.href); }catch(e){} } }catch(e){ document.documentElement.style.display="none"; }
+  /* Fuentes: se activan sin handler inline (compatible con CSP estricta) */
+  try{ var _fl=document.querySelector("link[rel=preload][as=style]"); if(_fl) _fl.rel="stylesheet"; }catch(e){}
   try{
     if(window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches){
       document.documentElement.setAttribute('data-theme','light');
@@ -3788,7 +3792,7 @@ function renderUsefulLinks(){
   document.getElementById('usefulLinksList').innerHTML = USEFUL_LINKS.map(l=>`
     <div class="useful-link-item">
       <div>
-        <a href="${l.url}" target="_blank" rel="noopener noreferrer">${esc(t(l.name))}</a>
+        <a href="${/^https:\/\//.test(l.url)?esc(l.url):'#'}" target="_blank" rel="noopener noreferrer">${esc(t(l.name))}</a>
         <span class="ul-desc">${esc(t(l.desc))}</span>
       </div>
     </div>`).join('');
