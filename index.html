@@ -6,7 +6,7 @@
 <title>BJJ Linx — Guía y progreso de Brazilian Jiu-Jitsu</title>
 <meta name="description" content="Guía completa de Brazilian Jiu-Jitsu: técnicas, cinturones, reglas y seguimiento de tu progreso personal, en 9 idiomas: español, inglés, valenciano, portugués, italiano, alemán, francés, turco y árabe.">
 <meta name="theme-color" content="#68cff4">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Q8EWLEi97uoPjCA58rz5PMY7Gf0BVzlegroLqsf2Acg=' 'sha256-2VtAMw10j6gJ9yLVJnwqbh23Q+N866C3uNd0+0DYZ9M=' 'sha256-9GNE0lScMNs9d5cHrdS5zWz/B7V9GtmZD/dxXuvuqdc='; worker-src 'self'; manifest-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Q8EWLEi97uoPjCA58rz5PMY7Gf0BVzlegroLqsf2Acg=' 'sha256-2VtAMw10j6gJ9yLVJnwqbh23Q+N866C3uNd0+0DYZ9M=' 'sha256-pZhvZKLYEgTLWurRzRfj8F0DqKhYURdQ40ckH/pFTPo='; worker-src 'self'; manifest-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none';">
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), usb=(), payment=(), midi=(), magnetometer=(), gyroscope=(), accelerometer=(), fullscreen=(self)">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
@@ -962,6 +962,54 @@ img.flag{width:18px;height:12px;object-fit:cover;border-radius:2px;vertical-alig
  .hq-tile{min-height:104px;font-size:18px;}
  .ht-text{font-size:17px;}
 }
+
+/* ===== Inicio v2 ===== */
+.home-col{display:flex;flex-direction:column;gap:12px;min-width:0;}
+.home-col>div:empty{display:none;}
+.hl-row{display:flex;gap:10px;}
+.hl-main{flex:1;min-height:60px;display:flex;align-items:center;justify-content:center;gap:10px;border-radius:18px;border:0;background:#00574f;color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;letter-spacing:.03em;cursor:pointer;box-shadow:0 4px 14px rgba(0,87,79,.35);}
+.hl-plus{font-size:28px;line-height:1;font-weight:400;}
+.hl-timer{width:60px;min-height:60px;border-radius:18px;border:1px solid var(--line);background:var(--bg-card);color:var(--canvas);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;}
+:root[data-theme="light"] .hl-timer{background:#fff;color:#0d2126;border-color:rgba(13,33,38,.08);box-shadow:0 2px 10px rgba(8,28,38,.08);}
+.hw-card,.hc-card,.hs-start,.hf-sec{padding:14px 16px;border-radius:18px;border:1px solid var(--line);background:var(--bg-card);color:var(--canvas);}
+:root[data-theme="light"] .hw-card,:root[data-theme="light"] .hc-card,:root[data-theme="light"] .hs-start,:root[data-theme="light"] .hf-sec{background:#fff;color:#0d2126;border-color:rgba(13,33,38,.08);box-shadow:0 2px 10px rgba(8,28,38,.08);}
+.hw-top{display:flex;align-items:baseline;justify-content:space-between;gap:8px;font-family:'Barlow Condensed',sans-serif;font-size:19px;letter-spacing:.03em;}
+.hw-of{font-family:'Barlow',sans-serif;font-size:13px;opacity:.75;}
+.hw-days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin:12px 0 10px;}
+.hw-d{display:flex;flex-direction:column;align-items:center;gap:4px;}
+.hw-dl{font-size:12px;font-weight:700;opacity:.65;text-transform:uppercase;}
+.hw-dot{width:100%;max-width:38px;aspect-ratio:1;border-radius:50%;border:2px solid rgba(127,127,127,.35);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;}
+.hw-d.on .hw-dot{background:#00574f;border-color:#00574f;color:#fff;}
+.hw-d.today .hw-dot{border-color:#1fbfb3;box-shadow:0 0 0 2px rgba(31,191,179,.35);}
+.hw-d.on.today .hw-dot{border-color:#1fbfb3;}
+.hw-d.fut{opacity:.55;}
+.hw-bar{height:8px;border-radius:4px;background:rgba(127,127,127,.2);overflow:hidden;}
+.hw-bar i{display:block;height:100%;background:#1fbfb3;border-radius:4px;}
+.hw-stats{display:flex;gap:22px;margin:12px 0 4px;}
+.hw-stats div{display:flex;flex-direction:column;}
+.hw-stats b{font-family:'Barlow Condensed',sans-serif;font-size:28px;line-height:1;}
+.hw-stats span{font-size:12px;opacity:.7;}
+.hw-last{font-size:13.5px;margin-top:8px;opacity:.9;}
+.hw-goal{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px;padding-top:10px;border-top:1px solid rgba(127,127,127,.25);font-size:13.5px;}
+.hw-step{display:inline-flex;align-items:center;gap:8px;}
+.hw-step button{width:38px;height:38px;border-radius:12px;border:1px solid rgba(127,127,127,.4);background:transparent;color:inherit;font-size:20px;font-weight:700;cursor:pointer;}
+.hw-step b{min-width:24px;text-align:center;font-size:17px;}
+.hs-st-t{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;margin-bottom:8px;}
+.hs-start ol{margin:0;padding-inline-start:20px;display:flex;flex-direction:column;gap:8px;}
+.hs-start li button{background:none;border:0;padding:6px 0;color:inherit;font:inherit;font-size:14.5px;text-align:start;text-decoration:underline;cursor:pointer;min-height:36px;}
+.hc-eye,.hf-t{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;opacity:.7;margin-bottom:6px;}
+.hc-name{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;line-height:1.15;}
+.hc-when{font-size:14px;opacity:.85;margin-top:2px;}
+.hc-btn{margin-top:10px;min-height:40px;padding:0 14px;border-radius:20px;border:1px solid currentColor;background:transparent;color:inherit;font-weight:700;font-size:14px;cursor:pointer;}
+.hf-row{display:flex;flex-wrap:wrap;gap:8px;}
+.hf-chip{min-height:38px;padding:0 12px;border-radius:19px;border:1px solid rgba(127,127,127,.4);background:transparent;color:inherit;font-weight:600;font-size:13.5px;cursor:pointer;text-align:start;}
+#homeFavs{display:flex;flex-direction:column;gap:12px;}
+.home-tip{padding:12px 16px;}
+.home-tip .ht-text{font-size:14.5px;}
+@media (min-width:1025px){
+ .home-grid{grid-template-columns:1fr 1fr;align-items:start;}
+ .hw-dot{max-width:44px;}
+}
 </style>
 </head>
 <body>
@@ -1147,14 +1195,22 @@ img.flag{width:18px;height:12px;object-fit:cover;border-radius:2px;vertical-alig
         <span class="scroll-arrow right" aria-hidden="true">▶</span>
       </div>
       <div class="home-grid">
-        <div class="home-summary" id="homeSummary" style="display:none;"></div>
-        <div class="home-quick" id="homeQuick" role="group"></div>
-        <div class="hero-card">
-          <div class="eyebrow" id="heroEyebrow"></div>
-          <h3><span id="heroTechName">—</span><button type="button" class="tree-btn" id="heroTreeBtn" data-tree="0">🌳</button></h3>
-          <p id="heroTechDesc">—</p>
+        <div class="home-col">
+          <div id="homeLog"></div>
+          <div id="homeWeek"></div>
+          <div class="home-summary" id="homeSummary" style="display:none;"></div>
+          <div id="homeStart"></div>
         </div>
-        <div class="home-tip" id="homeTip"></div>
+        <div class="home-col">
+          <div id="homeComp"></div>
+          <div class="hero-card">
+            <div class="eyebrow" id="heroEyebrow"></div>
+            <h3><span id="heroTechName">—</span><button type="button" class="tree-btn" id="heroTreeBtn" data-tree="0">🌳</button></h3>
+            <p id="heroTechDesc">—</p>
+          </div>
+          <div id="homeFavs"></div>
+          <div class="home-tip" id="homeTip"></div>
+        </div>
       </div>
       <div id="homeSources" style="display:none;">
         <h2 id="titleGiSizes"></h2><div class="card"><p id="giSizesNote"></p><div id="giSizesTable"></div></div>
@@ -3618,29 +3674,82 @@ function renderHero(){
 
 /* ================= INICIO: accesos rápidos + consejo del día ================= */
 const HOME_TXT = {"tipDay":{"es":"Consejo del día","en":"Tip of the day","val":"Consell del dia","pt":"Dica do dia","it":"Consiglio del giorno","de":"Tipp des Tages","fr":"Conseil du jour","tr":"Günün ipucu","ar":"نصيحة اليوم"},"tipAll":{"es":"Ver los {n} consejos","en":"See all {n} tips","val":"Vore els {n} consells","pt":"Ver as {n} dicas","it":"Vedi tutti i {n} consigli","de":"Alle {n} Tipps ansehen","fr":"Voir les {n} conseils","tr":"{n} ipucunun tümünü gör","ar":"عرض كل النصائح ({n})"},"tips":{"es":"Consejos","en":"Tips","val":"Consells","pt":"Dicas","it":"Consigli","de":"Tipps","fr":"Conseils","tr":"İpuçları","ar":"نصائح"},"equip":{"es":"Equipo","en":"Equipment","val":"Equip","pt":"Equipamento","it":"Attrezzatura","de":"Ausrüstung","fr":"Équipement","tr":"Ekipman","ar":"المعدات"},"quickAria":{"es":"Accesos rápidos","en":"Quick access","val":"Accessos ràpids","pt":"Acessos rápidos","it":"Accessi rapidi","de":"Schnellzugriff","fr":"Accès rapides","tr":"Hızlı erişim","ar":"وصول سريع"}};
+
+/* ================= INICIO v2: registro rápido, semana, competición, favoritas y recientes ================= */
+const HOME2 = {"log":{"es":"Registrar entrenamiento","en":"Log a session","val":"Registrar entrenament","pt":"Registrar treino","it":"Registra allenamento","de":"Training eintragen","fr":"Enregistrer un entraînement","tr":"Antrenman kaydet","ar":"تسجيل تدريب"},"week":{"es":"Esta semana","en":"This week","val":"Esta setmana","pt":"Esta semana","it":"Questa settimana","de":"Diese Woche","fr":"Cette semaine","tr":"Bu hafta","ar":"هذا الأسبوع"},"of":{"es":"{a} de {b} sesiones","en":"{a} of {b} sessions","val":"{a} de {b} sessions","pt":"{a} de {b} sessões","it":"{a} di {b} sessioni","de":"{a} von {b} Einheiten","fr":"{a} sur {b} séances","tr":"{a} / {b} seans","ar":"{a} من {b} حصص"},"goal":{"es":"Objetivo semanal","en":"Weekly goal","val":"Objectiu setmanal","pt":"Meta semanal","it":"Obiettivo settimanale","de":"Wochenziel","fr":"Objectif hebdo","tr":"Haftalık hedef","ar":"الهدف الأسبوعي"},"streak":{"es":"semanas seguidas","en":"weeks in a row","val":"setmanes seguides","pt":"semanas seguidas","it":"settimane di fila","de":"Wochen in Folge","fr":"semaines d'affilée","tr":"hafta üst üste","ar":"أسابيع متتالية"},"hours":{"es":"horas","en":"hours","val":"hores","pt":"horas","it":"ore","de":"Stunden","fr":"heures","tr":"saat","ar":"ساعات"},"last":{"es":"Última sesión","en":"Last session","val":"Última sessió","pt":"Última sessão","it":"Ultima sessione","de":"Letzte Einheit","fr":"Dernière séance","tr":"Son seans","ar":"آخر حصة"},"none":{"es":"Aún no has registrado ninguna sesión.","en":"You haven't logged a session yet.","val":"Encara no has registrat cap sessió.","pt":"Você ainda não registrou nenhuma sessão.","it":"Non hai ancora registrato nessuna sessione.","de":"Du hast noch keine Einheit eingetragen.","fr":"Tu n'as pas encore enregistré de séance.","tr":"Henüz hiç seans kaydetmedin.","ar":"لم تسجّل أي حصة بعد."},"startT":{"es":"Empieza aquí","en":"Start here","val":"Comença ací","pt":"Comece aqui","it":"Inizia da qui","de":"Hier starten","fr":"Commence ici","tr":"Buradan başla","ar":"ابدأ من هنا"},"s1":{"es":"Completa tu perfil: cinturón y grados","en":"Fill in your profile: belt and stripes","val":"Completa el teu perfil: cinturó i graus","pt":"Complete seu perfil: faixa e graus","it":"Completa il tuo profilo: cintura e gradi","de":"Vervollständige dein Profil: Gürtel und Grade","fr":"Complète ton profil : ceinture et grades","tr":"Profilini tamamla: kuşak ve derece","ar":"أكمل ملفك: الحزام والدرجات"},"s2":{"es":"Registra tu primer entrenamiento","en":"Log your first session","val":"Registra el teu primer entrenament","pt":"Registre seu primeiro treino","it":"Registra il tuo primo allenamento","de":"Trage deine erste Einheit ein","fr":"Enregistre ta première séance","tr":"İlk antrenmanını kaydet","ar":"سجّل أول تدريب لك"},"s3":{"es":"Marca técnicas como favoritas con la ★","en":"Mark techniques as favourites with the ★","val":"Marca tècniques com a favorites amb la ★","pt":"Marque técnicas como favoritas com a ★","it":"Segna le tecniche come preferite con la ★","de":"Markiere Techniken mit dem ★ als Favoriten","fr":"Marque des techniques en favoris avec la ★","tr":"Teknikleri ★ ile favori olarak işaretle","ar":"علّم التقنيات كمفضّلة بالنجمة ★"},"comp":{"es":"Próxima competición","en":"Next competition","val":"Pròxima competició","pt":"Próxima competição","it":"Prossima gara","de":"Nächster Wettkampf","fr":"Prochaine compétition","tr":"Sonraki müsabaka","ar":"المنافسة القادمة"},"compPrep":{"es":"Preparar","en":"Prepare","val":"Preparar","pt":"Preparar","it":"Prepara","de":"Vorbereiten","fr":"Préparer","tr":"Hazırlan","ar":"تحضير"},"favs":{"es":"Tus favoritas","en":"Your favourites","val":"Les teues favorites","pt":"Suas favoritas","it":"I tuoi preferiti","de":"Deine Favoriten","fr":"Tes favoris","tr":"Favorilerin","ar":"مفضلاتك"},"recent":{"es":"Vistas recientemente","en":"Recently viewed","val":"Vistes recentment","pt":"Vistas recentemente","it":"Viste di recente","de":"Zuletzt angesehen","fr":"Vues récemment","tr":"Son görüntülenenler","ar":"شوهدت مؤخرًا"}};
+const LOCALE_OF = {es:'es', en:'en', val:'ca', pt:'pt', it:'it', de:'de', fr:'fr', tr:'tr', ar:'ar'};
+function homeLoc(){ return LOCALE_OF[LANG] || 'es'; }
+function pad2(n){ return String(n).padStart(2,'0'); }
+function dayKey(d){ return d.getFullYear() + '-' + pad2(d.getMonth()+1) + '-' + pad2(d.getDate()); }
+function mondayOf(d){ const x = new Date(d.getFullYear(), d.getMonth(), d.getDate()); const wd = (x.getDay()+6)%7; x.setDate(x.getDate()-wd); return x; }
+function recentGet(){ try{ const a = JSON.parse(localStorage.getItem('bjjlinx_recent')||'[]'); return Array.isArray(a) ? a.filter(n=>TECH_BY_ID[n]).slice(0,8) : []; }catch(e){ return []; } }
+function recentAdd(id){ try{ id = Number(id); if(!TECH_BY_ID[id]) return; const a = recentGet().filter(n=>n!==id); a.unshift(id); localStorage.setItem('bjjlinx_recent', JSON.stringify(a.slice(0,8))); }catch(e){} }
+function weekGoal(){ const g = Number(PSTATE.profile && PSTATE.profile.weekGoal); return (g>=1 && g<=14) ? Math.round(g) : 3; }
+function homeWeekData(){
+  const now = new Date(), mon = mondayOf(now);
+  const days = []; const logDays = new Set(PSTATE.log.map(l=>String(l.date||'').slice(0,10)).filter(Boolean));
+  for(let i=0;i<7;i++){ const d = new Date(mon); d.setDate(mon.getDate()+i); days.push({d, k:dayKey(d), on:logDays.has(dayKey(d)), today:dayKey(d)===dayKey(now), future:d>now && dayKey(d)!==dayKey(now)}); }
+  const sessions = days.reduce((s,x)=>s+PSTATE.log.filter(l=>String(l.date||'').slice(0,10)===x.k).length,0);
+  // semanas seguidas con al menos una sesión (la semana en curso cuenta si ya tiene; si no, se parte de la anterior)
+  const hasWeek = (start)=>{ for(let i=0;i<7;i++){ const d = new Date(start); d.setDate(start.getDate()+i); if(logDays.has(dayKey(d))) return true; } return false; };
+  let streak = 0; const cur = new Date(mon); if(!hasWeek(cur)) cur.setDate(cur.getDate()-7);
+  while(streak<520 && hasWeek(cur)){ streak++; cur.setDate(cur.getDate()-7); }
+  const sorted = PSTATE.log.filter(l=>l.date).map(l=>String(l.date).slice(0,10)).sort();
+  const lastKey = sorted.length ? sorted[sorted.length-1] : null;
+  let ago = null; if(lastKey){ const p = lastKey.split('-').map(Number); const ld = new Date(p[0],p[1]-1,p[2]); const t0 = new Date(now.getFullYear(),now.getMonth(),now.getDate()); ago = Math.round((t0-ld)/86400000); }
+  return {days, sessions, streak, ago};
+}
+function homeRel(n){ try{ return new Intl.RelativeTimeFormat(homeLoc(), {numeric:'auto'}).format(n,'day'); }catch(e){ return String(n); } }
 function renderHomeDash(){
   try{
-    const q = document.getElementById('homeQuick'); const tp = document.getElementById('homeTip'); if(!q || !tp) return;
-    const favN = (typeof favCount === 'function') ? favCount() : 0;
-    const tiles = [
-      ['tecnicas','<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>', UI[LANG].nav.tecnicas, ''],
-      ['flow','<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.3 10.9 15.7 7.1M8.3 13.1l7.4 3.8"/></svg>', UI[LANG].nav.flow, ''],
-      ['favs','<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 16.9 6.8 19.7l1-5.9-4.3-4.1 5.9-.8z"/></svg>', t(FAV_TXT.chip), favN ? String(favN) : ''],
-      ['prog','<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg>', UI[LANG].nav.progreso, '']
-    ];
-    q.setAttribute('aria-label', t(HOME_TXT.quickAria));
-    q.innerHTML = tiles.map(x => '<button type="button" class="hq-tile" data-q="' + x[0] + '">' + x[1] + '<span class="hq-l">' + esc(x[2]) + '</span>' + (x[3] ? '<span class="hq-b">' + esc(x[3]) + '</span>' : '') + '</button>').join('');
-    q.querySelectorAll('.hq-tile').forEach(b => b.addEventListener('click', () => {
-      const k = b.dataset.q;
-      if(k === 'tecnicas' || k === 'flow') goto(k);
-      else if(k === 'favs'){ goto('tecnicas'); const c = document.querySelector('#techFilters [data-filter="Favoritas"]'); if(c) c.click(); }
-      else if(k === 'prog') goto('progreso');
-    }));
-    const i = Math.floor(Date.now() / 86400000) % TIPS.length;
-    tp.innerHTML = '<div class="ht-eye">' + esc(t(HOME_TXT.tipDay)) + '</div><div class="ht-text">' + t(TIPS[i]) + '</div>' +
-      '<button type="button" class="ht-more" id="homeTipAll">' + esc(t(HOME_TXT.tipAll).replace('{n}', TIPS.length)) + ' →</button>';
-    document.getElementById('homeTipAll').addEventListener('click', () => { goto('glosario'); setInfoView('tips'); });
-  }catch(e){}
+    const g = id => document.getElementById(id); if(!g('homeLog')) return;
+    const hasData = PSTATE.log.length>0 || PSTATE.profile.name;
+    // 1) Registro rápido
+    g('homeLog').innerHTML = '<div class="hl-row"><button type="button" class="hl-main" id="homeLogBtn"><span class="hl-plus" aria-hidden="true">+</span><span>' + esc(t(HOME2.log)) + '</span></button>' +
+      '<button type="button" class="hl-timer" id="homeTimerQuick" aria-label="' + esc(t(TIMER_TXT.open)) + '" title="' + esc(t(TIMER_TXT.open)) + '"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 9.5v4l2.5 1.5M9.5 2.5h5M12 2.5v3.5"/></svg></button></div>';
+    g('homeLogBtn').onclick = () => { goto('progreso'); gotoSub('historial'); const f = g('logForm'); if(f && !f.classList.contains('open')) f.classList.add('open'); try{ f.scrollIntoView({block:'start'}); }catch(e){} const d = g('lgDuration'); if(d) setTimeout(()=>{ try{ d.focus({preventScroll:true}); }catch(e){} }, 150); };
+    g('homeTimerQuick').onclick = () => openTimer();
+    // 2) Semana
+    const w = homeWeekData(), goal = weekGoal(), pct = Math.min(100, Math.round(w.sessions/goal*100));
+    const wd = new Intl.DateTimeFormat(homeLoc(), {weekday:'narrow'});
+    const lastTxt = w.ago===null ? esc(t(HOME2.none)) : '<b>' + esc(t(HOME2.last)) + ':</b> ' + esc(homeRel(-w.ago));
+    const totalH = (PSTATE.log.reduce((s,l)=>s+(Number(l.duration)||0),0)/60).toFixed(1);
+    g('homeWeek').innerHTML = '<div class="hw-card"><div class="hw-top"><b>' + esc(t(HOME2.week)) + '</b><span class="hw-of">' + esc(t(HOME2.of).replace('{a}', w.sessions).replace('{b}', goal)) + '</span></div>' +
+      '<div class="hw-days" role="list">' + w.days.map(x => '<div class="hw-d' + (x.on?' on':'') + (x.today?' today':'') + (x.future?' fut':'') + '" role="listitem"><span class="hw-dl">' + esc(wd.format(x.d).replace('.','').slice(0,2)) + '</span><span class="hw-dot">' + (x.on?'✓':'') + '</span></div>').join('') + '</div>' +
+      '<div class="hw-bar" aria-hidden="true"><i style="width:' + pct + '%"></i></div>' +
+      '<div class="hw-stats"><div><b>' + w.streak + '</b><span>' + esc(t(HOME2.streak)) + '</span></div><div><b>' + totalH + '</b><span>' + esc(t(HOME2.hours)) + '</span></div></div>' +
+      '<div class="hw-last">' + lastTxt + '</div>' +
+      '<div class="hw-goal"><span>' + esc(t(HOME2.goal)) + '</span><span class="hw-step"><button type="button" id="wgMinus" aria-label="-">−</button><b>' + goal + '</b><button type="button" id="wgPlus" aria-label="+">+</button></span></div></div>';
+    const setGoal = async d => { PSTATE.profile.weekGoal = Math.max(1, Math.min(14, weekGoal()+d)); try{ await stSet('profile', PSTATE.profile); }catch(e){} renderHomeDash(); };
+    g('wgMinus').onclick = () => setGoal(-1); g('wgPlus').onclick = () => setGoal(1);
+    // 3) Empieza aquí (sin datos)
+    const st = g('homeStart');
+    if(!hasData){
+      st.innerHTML = '<div class="hs-start"><div class="hs-st-t">' + esc(t(HOME2.startT)) + '</div><ol><li><button type="button" data-go="perfil">' + esc(t(HOME2.s1)) + '</button></li><li><button type="button" data-go="historial">' + esc(t(HOME2.s2)) + '</button></li><li><button type="button" data-go="favs">' + esc(t(HOME2.s3)) + '</button></li></ol></div>';
+      st.querySelectorAll('button').forEach(b => b.onclick = () => { const k = b.dataset.go; if(k==='favs'){ goto('tecnicas'); } else { goto('progreso'); gotoSub(k); if(k==='historial'){ const f = g('logForm'); if(f) f.classList.add('open'); } } });
+    } else st.innerHTML = '';
+    // 4) Próxima competición
+    const cp = g('homeComp'); cp.innerHTML = '';
+    try{
+      const now = Date.now();
+      const next = PSTATE.competitions.filter(c=>c && c.date).map(c=>({c, t:new Date(c.date+'T'+(c.startTime||'00:00')+':00').getTime()})).filter(x=>isFinite(x.t) && x.t>=now).sort((a,b)=>a.t-b.t)[0];
+      if(next){
+        const days = Math.max(0, Math.ceil((next.t-now)/86400000));
+        cp.innerHTML = '<div class="hc-card"><div class="hc-eye">' + esc(t(HOME2.comp)) + '</div><div class="hc-name">' + esc(next.c.name||'') + '</div><div class="hc-when">' + esc(homeRel(days)) + ' · ' + esc(new Date(next.t).toLocaleDateString(homeLoc(), {day:'numeric', month:'short'})) + '</div><button type="button" class="hc-btn" id="homeCompBtn">' + esc(t(HOME2.compPrep)) + ' →</button></div>';
+        g('homeCompBtn').onclick = () => { TRAIN_OPEN.competicion = true; renderTrain(); goto('progreso'); gotoSub('entrenos'); };
+      }
+    }catch(e){}
+    // 5) Favoritas y recientes
+    const fv = g('homeFavs'); const chips = (ids, title) => ids.length ? '<div class="hf-sec"><div class="hf-t">' + esc(title) + '</div><div class="hf-row">' + ids.map(id => '<button type="button" class="hf-chip" data-open="' + id + '">' + esc(t(TECH_BY_ID[id].name)) + '</button>').join('') + '</div></div>' : '';
+    const favIds = Object.keys((PSTATE.learned && PSTATE.learned.favs) || {}).map(Number).filter(n=>TECH_BY_ID[n]).slice(0,8);
+    const recIds = recentGet().filter(n=>favIds.indexOf(n)<0).slice(0,5);
+    fv.innerHTML = chips(favIds, '★ ' + t(HOME2.favs)) + chips(recIds, t(HOME2.recent));
+    fv.querySelectorAll('[data-open]').forEach(b => b.onclick = () => openFicha(Number(b.dataset.open)));
+    // 6) Consejo (compacto)
+    const tp = g('homeTip'); const i = Math.floor(Date.now()/86400000) % TIPS.length;
+    tp.innerHTML = '<div class="ht-eye">' + esc(t(HOME_TXT.tipDay)) + '</div><div class="ht-text">' + t(TIPS[i]) + '</div><button type="button" class="ht-more" id="homeTipAll">' + esc(t(HOME_TXT.tipAll).replace('{n}', TIPS.length)) + ' →</button>';
+    g('homeTipAll').onclick = () => { goto('glosario'); setInfoView('tips'); };
+  }catch(e){ try{ console.error(e); }catch(_){} }
 }
 function renderTips(){
   document.getElementById('tipsList').innerHTML = TIPS.map((tip,i)=>`<div class="tip-item"><div class="tip-num">${String(i+1).padStart(2,'0')}</div><div class="tip-text">${t(tip)}</div></div>`).join('');
@@ -4845,6 +4954,7 @@ function renderProgAll(){
   applyProgLabels();
   renderProgHeader();
   renderHomeSummary();
+  renderHomeDash();
   renderProgSubnav();
   renderPanelHeads();
   renderTrain();
@@ -5220,6 +5330,7 @@ function goto(tab, fromPop){
   centerActiveNavTab();
   document.getElementById('subtitle').textContent = UI[LANG].subtitle[tab];
   document.getElementById('searchWrap').classList.toggle('active', tab==='tecnicas');
+  if(tab==='inicio'){ try{ renderHomeDash(); }catch(e){} }
   window.scrollTo(0,0);
 }
 document.querySelectorAll('nav.bottom button').forEach(b=>{ b.addEventListener('click', ()=> goto(b.dataset.tab)); });
@@ -6288,6 +6399,7 @@ async function toggleFav(id){
   if(isFav(id)) delete PSTATE.learned.favs[id]; else PSTATE.learned.favs[id] = true;
   try{ await stSet('learned', PSTATE.learned); }catch(e){}
   try{ renderFilters(); renderTechniques(); }catch(e){}
+  try{ renderHomeDash(); }catch(e){}
   document.querySelectorAll('#fichaBody [data-fav="' + id + '"]').forEach(b => { const on = isFav(id); b.classList.toggle('on', on); b.textContent = on ? '★' : '☆'; b.setAttribute('aria-pressed', String(on)); const lab = t(on ? FAV_TXT.del : FAV_TXT.add); b.setAttribute('aria-label', lab); b.title = lab; });
 }
 function wireFavBtns(root){
@@ -6721,6 +6833,7 @@ function openFicha(id, isBack, fromTree){
   if(ov.style.display !== 'flex') fichaOpener = document.activeElement;
   if(fromTree) fichaHistory = [];
   if(!isBack) fichaHistory.push(id);
+  try{ recentAdd(id); }catch(e){}
   renderFicha(id);
   ov.style.display = 'flex';
   syncOverlayScrollLock();
