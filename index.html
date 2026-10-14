@@ -6,7 +6,7 @@
 <title>BJJ Linx — Guía y progreso de Brazilian Jiu-Jitsu</title>
 <meta name="description" content="Guía completa de Brazilian Jiu-Jitsu: técnicas, cinturones, reglas y seguimiento de tu progreso personal, en 9 idiomas: español, inglés, valenciano, portugués, italiano, alemán, francés, turco y árabe.">
 <meta name="theme-color" content="#68cff4">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Q8EWLEi97uoPjCA58rz5PMY7Gf0BVzlegroLqsf2Acg=' 'sha256-2VtAMw10j6gJ9yLVJnwqbh23Q+N866C3uNd0+0DYZ9M=' 'sha256-8CwQwaAHJv88GX8d1RlHM97p7IBd+dgnDHdA1DDV+R4='; worker-src 'self'; manifest-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Q8EWLEi97uoPjCA58rz5PMY7Gf0BVzlegroLqsf2Acg=' 'sha256-2VtAMw10j6gJ9yLVJnwqbh23Q+N866C3uNd0+0DYZ9M=' 'sha256-0hUReJ1ki8wbwfnjsPnTATBXhOyLqr9c9rDRZNmOdw0='; worker-src 'self'; manifest-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none';">
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), usb=(), payment=(), midi=(), magnetometer=(), gyroscope=(), accelerometer=(), fullscreen=(self)">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
@@ -1077,6 +1077,31 @@ img.flag{width:18px;height:12px;object-fit:cover;border-radius:2px;vertical-alig
 .hw-next{font-size:13.5px;margin-top:6px;}
 .hw-plan{margin-top:10px;min-height:38px;padding:0 14px;border-radius:19px;border:1px solid currentColor;background:transparent;color:inherit;font-weight:700;font-size:13.5px;cursor:pointer;}
 .hw-d.plan .hw-dot{border-style:dashed;border-color:#1fbfb3;}
+
+/* ===== Pulido: espaciados, estados vacíos, ficha, filas PC, pulsaciones ===== */
+.empty{padding:22px 16px;line-height:1.5;border:1px dashed var(--line);border-radius:14px;max-width:520px;margin:6px auto;font-size:14px;}
+.card:has(#weightChart .empty) #weightLogList .empty{display:none;}
+.card:has(#weightChart .empty) #weightChart .empty{margin-bottom:0;}
+#profileSummaryCard .ps-na{display:none;}
+.field-row{align-items:end;}
+.entity-item{transition:transform .12s ease;}
+button,.chip,.tip-item,.glossary-item,.tech-item,.entity-item,.gsearch-item{-webkit-tap-highlight-color:transparent;}
+button:not(:disabled):active,.chip:active,.tech-item:active,.tip-item:active{transform:scale(.98);}
+button,.chip,.tech-item,.tip-item{transition:transform .12s ease,background-color .15s ease,box-shadow .15s ease;}
+@media (prefers-reduced-motion:reduce){button:not(:disabled):active,.chip:active,.tech-item:active,.tip-item:active{transform:none;}}
+@media (min-width:1025px){
+ .tech-item{display:grid;grid-template-columns:minmax(240px,1.3fr) minmax(0,1fr) auto;align-items:center;column-gap:18px;padding:12px 20px 12px 22px;margin-bottom:8px;}
+ .tech-item .row1{min-width:0;}
+ .tech-item h4{font-size:18px;}
+ .tech-item .meta{margin-top:0;font-size:13.5px;}
+ .tech-item .meta::after{display:none;}
+ .tech-item .tags{margin-top:0;display:flex;align-items:center;gap:6px;}
+ .tech-item .tags::after{content:"▾";margin-inline-start:12px;opacity:.45;font-size:14px;transition:transform .18s;}
+ .tech-item.open .tags::after{transform:rotate(180deg);}
+ .tech-item .desc,.tech-item .tech-links,.tech-item .tech-restriction{grid-column:1/-1;}
+ .tech-item.open{padding-bottom:16px;}
+ .tech-item.open .desc{margin-top:10px;}
+}
 </style>
 </head>
 <body>
@@ -4585,6 +4610,8 @@ function renderProfileSummary(){
     <div class="ps-row"><span>${ps.belt}</span><span>${esc(beltDisplayLabel(p.belt))}</span></div>
     <div class="ps-row"><span>${ps.practicing}</span><span>${practTime}</span></div>
     <div class="ps-row"><span>${ps.withBelt}</span><span>${beltTime}</span></div>`;
+  card.querySelectorAll('.ps-row').forEach(r=>{ if(r.lastElementChild && r.lastElementChild.textContent.trim()===String(ps.notAvailable).trim()) r.classList.add('ps-na'); });
+  card.querySelectorAll('.ps-section').forEach(sec=>{ let n=sec.nextElementSibling, any=false; while(n && !n.classList.contains('ps-section')){ if(n.classList.contains('ps-row') && !n.classList.contains('ps-na')) any=true; n=n.nextElementSibling; } if(!any) sec.classList.add('ps-na'); });
   card.style.display = 'block';
   document.getElementById('exportProfilePdfBtn').style.display = 'block';
 }
@@ -4708,7 +4735,7 @@ function renderLogList(){
     return `<div class="entity-item">
       <button class="del" aria-label="${LANG==='tr'?'Sil':LANG==='fr'?'Supprimer':LANG==='ar'?'حذف':LANG==='en'?'Delete':LANG==='pt'?'Excluir':LANG==='it'?'Elimina':LANG==='de'?'Löschen':'Eliminar'}" data-del="log:${esc(String(l.id))}">✕</button>
       <h4>${esc(fmtDate(l.date))}${l.time? ' · '+esc(l.time) : ''} · ${l.type==='gi'?'Gi':'No-Gi'}</h4>
-      <div class="sub">${esc(String(l.duration||0))} min · ${esc(String(l.rounds||0))} ${p.log.rounds.toLowerCase()} ${l.academy?(' · '+esc(l.academy)):''}</div>
+      <div class="sub">${esc(String(l.duration||0))} min${Number(l.rounds)>0?(' · '+esc(String(l.rounds))+' '+p.log.rounds.toLowerCase()):''}${l.academy?(' · '+esc(l.academy)):''}</div>
       ${techNames.length? `<p>${techNames.map(esc).join(', ')}</p>`:''}
       ${(l.hr||l.cal)? `<div class="sub" style="margin-top:6px;">${l.hr?('FC '+esc(l.hr)+' bpm '):''}${l.cal?(esc(l.cal)+' kcal'):''}</div>`:''}
       ${l.notes? `<p style="margin-top:6px;">${esc(l.notes)}</p>`:''}
