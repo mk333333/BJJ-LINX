@@ -1226,6 +1226,13 @@ img.flag{width:18px;height:12px;object-fit:cover;border-radius:2px;vertical-alig
         <h2 class="section-title" id="titleHistory"></h2>
         <div id="historyList"></div>
       </div>
+      <div id="infoViewSizes" style="display:none;">
+        <h2 class="section-title" id="titleGiSizes2"></h2>
+        <div class="card">
+          <p style="font-size:12px; color:var(--canvas-dim); margin:0 0 10px;" id="giSizesNote2"></p>
+          <div id="giSizesTable2"></div>
+        </div>
+      </div>
     </section>
 
     <section id="progreso">
@@ -3529,6 +3536,7 @@ function renderEquip(){
         ${GI_SIZES.map(s=>`<tr><td class="gi-size-name">${s.size}</td><td>${s.height_cm} cm<br><span style="opacity:0.7;">${s.height_ft}</span></td><td>${s.weight_kg} kg<br><span style="opacity:0.7;">${s.weight_lb} lb</span></td></tr>`).join('')}
       </tbody>
     </table>`;
+  { const g = id => document.getElementById(id); if(g('giSizesTable2')){ g('titleGiSizes2').textContent = u.titleGiSizes; g('giSizesNote2').textContent = u.giSizesNote; g('giSizesTable2').innerHTML = g('giSizesTable').innerHTML; } }
   document.getElementById('nogiEquip').innerHTML = '<ul style="margin:0; padding-left:18px; font-size:13px; color:var(--canvas-dim); line-height:1.9;">' + (NOGI_ITEMS[LANG]||NOGI_ITEMS.es).map(i=>`<li>${i}</li>`).join('') + '</ul>';
 }
 function renderFilters(){
@@ -5053,10 +5061,11 @@ function updateNavArrows(){
 })();
 
 var CUR_TAB='inicio', CUR_INFO='glossary';
+const INFO_SIZES_LBL = {es:'Tallas',en:'Sizes',val:'Talles',pt:'Tamanhos',it:'Taglie',de:'Größen',fr:'Tailles',tr:'Bedenler',ar:'المقاسات'};
 function updateInfoHub(){
   try{
     const u=UI[LANG];
-    const items=[['niveles',u.nav.niveles],['reglas',u.nav.reglas],['glossary',u.infoGlossary],['curiosities',u.infoCuriosities],['history',u.infoHistory]];
+    const items=[['niveles',u.nav.niveles],['reglas',u.nav.reglas],['glossary',u.infoGlossary],['curiosities',u.infoCuriosities],['history',u.infoHistory],['sizes',t(INFO_SIZES_LBL)]];
     ['niveles','reglas','glosario'].forEach(id=>{
       const sec=document.getElementById(id); if(!sec) return;
       let hub=sec.querySelector(':scope > .info-hub-wrap .info-hub');
@@ -5070,6 +5079,7 @@ function updateInfoHub(){
         const on = (it[0]==='niveles'||it[0]==='reglas') ? CUR_TAB===it[0] : (CUR_TAB==='glosario' && CUR_INFO===it[0]);
         return `<button class="chip${on?' on':''}" data-hub="${it[0]}">${it[1]}</button>`;
       }).join('');
+      try{ const on=hub.querySelector('.chip.on'); if(on) hub.scrollLeft = Math.max(0, on.offsetLeft - (hub.clientWidth - on.offsetWidth)/2); }catch(e){}
       hub.querySelectorAll('.chip').forEach(ch=>ch.onclick=()=>{
         const k=ch.dataset.hub;
         if(k==='niveles'||k==='reglas') goto(k); else { goto('glosario'); setInfoView(k); }
@@ -5322,6 +5332,7 @@ function setInfoView(view){
   document.getElementById('infoViewGlossary').style.display = view==='glossary' ? 'block' : 'none';
   document.getElementById('infoViewCuriosities').style.display = view==='curiosities' ? 'block' : 'none';
   document.getElementById('infoViewHistory').style.display = view==='history' ? 'block' : 'none';
+  document.getElementById('infoViewSizes').style.display = view==='sizes' ? 'block' : 'none';
   document.getElementById('infoViewGlossaryBtn').classList.toggle('on', view==='glossary');
   document.getElementById('infoViewCuriositiesBtn').classList.toggle('on', view==='curiosities');
   document.getElementById('infoViewHistoryBtn').classList.toggle('on', view==='history');
